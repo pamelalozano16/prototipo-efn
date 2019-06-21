@@ -2,10 +2,12 @@ const mongoose = require('mongoose')
 
 
 
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect("mongodb+srv://dbPrueba:Pammap99*@cluster0-viegr.mongodb.net/prototipo-efn?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
+}).catch((e)=>{
+    console.log(e)
 })
 
 // const Factura = mongoose.model('facturasPublicadas', {

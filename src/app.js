@@ -13,6 +13,8 @@ const excelToJson = require('convert-excel-to-json');
 const app = express()
 const port = process.env.PORT
 
+console.log(process.env.MONGODB_URL)
+
 app.use(express.json())
 app.use(userRouter)
 app.use(buyerRouter)
