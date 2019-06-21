@@ -1,0 +1,42 @@
+<html>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+
+        <div class="main-content">
+            <h1>Relación Proveedor/Banco</h1>
+            <div class="w3-container">
+               Nombre: <p  style="display:inline" id="name"></p><br>
+               RFC: <p  style="display:inline" id="rfc"></p><br><br>
+      <form>
+    <input placeholder="Tasa Base" id="tasabase"><br>
+    <input placeholder="Spread Points" id="s-points"><br>
+      <select name="tipo-banco0" class="tipo" id="tipo-banco0">
+            <option value=""></option>
+            <option value="Sabadell">Sabadell</option>
+            <option value="Hitachi">Hitachi</option>
+       </select>
+       <div id="add-bank-form">
+
+       </div>
+     </form>
+     <p id="error"></p>
+          <button onclick="agregar()">Registrar</button>
+      
+        </div>
+       
+
+     <button id="addbank" onclick="addbank()">Agregar Banco</button>
+
+
+         
+
+<script src="./js/inputs.js"></script> 
+    </body>
+</html>

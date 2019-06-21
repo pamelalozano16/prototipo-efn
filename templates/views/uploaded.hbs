@@ -1,0 +1,40 @@
+<html>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/carga-facturas.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    td{
+        font-size:14px;
+        width:auto;
+    }
+</style>
+    </head>
+    <body>
+     <h1>Cargar Factura</h1>
+        <div style="margin-top:20px; float: left;">
+        Tipo de carga: <button id="individual">Individual</button>
+        <button id="multiple">Multiple</button>
+        </div>
+
+        <a href="http://localhost:3000/file.xlsx">Archivo Cargardo</a>
+
+<div style="margin: 30px 10px;">
+    <table id="tabla-facturas"></table>
+</div>
+<br> 
+<div>
+    <p id="docs" style="display: inline;"></p> Documentos <br>
+    Monto total en pesos (MXN): $<p id="total" style="display: inline;"></p></div>
+    <br><br>
+        Seguro que quieres subir esta factura? 
+        <button onclick="facturasOk()">Confirmar</button>
+
+ <script src="./js/upload.js"></script>       
+    </body>
+</html>

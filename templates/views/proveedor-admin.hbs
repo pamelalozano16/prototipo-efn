@@ -1,0 +1,44 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/buyer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<h1>Alta de Compradores</h1>
+{{!-- <p id="user"></p> --}}
+<a href="http://localhost:3000/prueba">Link api</a>
+<br>
+
+<div class="row">
+ <form style="margin-bottom: 50px;">
+      <div class="column" style="width:100px;">
+       ID: <p id="IDnum" style="display: inline;"></p>
+       </div>     
+       <div class="column">
+             <input placeholder="Name" id="name"><br>
+       </div>
+       <div class="column">
+             <input placeholder="RFC" id="age"><br>
+       </div>     
+            <br>
+                  </form>
+                  <button class="addBtn" onclick="add()">Add</button>
+                  <button id="save" onclick="save()">Save</button>
+                  <p id="error"></p>
+</div>
+<div class="w3-container">
+
+<table id ="myTable"></table>
+
+
+</div>
+           
+
+<script src="./js/buyer-js.js"></script> 
+</body>
+</html>

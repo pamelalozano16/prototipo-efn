@@ -1,0 +1,84 @@
+<html>
+    <head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/carga-facturas.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+    <body>
+        <h1>Cargar Factura</h1>
+        <div style="margin-top:20px; float: left;">
+        Tipo de carga: <button id="individual" onclick="mostrarIndividual()">Individual</button>
+        <button id="multiple" onclick="multiple()">Multiple</button>
+        </div>
+
+    <div id="carga-individual">
+        Buscar por RFC:<input id="rfc-search">
+        <button onclick="search()">Buscar</button>
+      <form>
+<input value="" placeholder="ID" id="IDnum">
+<input value="" placeholder="Nombre" id="name">
+<input value="" placeholder="RFC" id="rfc">
+    <div style="margin: 30px 5px; width: 400px;">
+        Numero de factura:<br>
+        <input id="numero">
+        <br>
+        Fiscal folio / UUID:<br>
+        <input id="folioFiscal"><br>
+        Fecha de factura:<br>
+        <input id="invoiceDate" placeholder="MM/DD/YYYY"><br>
+        Fecha de vencimiento de factura:<br>
+        <input placeholder="MM/DD/YYYY" id="dueDate">
+         <br>
+        Moneda:<br>
+        <input placeholder="Moneda" id="moneda">
+         <br>
+        Aforo (Favor de usar punto para centavos):<br>
+        <input placeholder="Aforo" id="aforo">
+    </div>
+      </form>
+      <button onclick="individual()">Subir</button>
+    </div>
+
+        <div id="carga-multiple">
+            <br>
+            1.Cargar .xls o .xlsx (Formato Excel)<br>
+            2.Cambiar nombre a la hoja a "sheet1"<br>
+            3.No usar titulos<br>
+            4.Respetar orden de datos<br>
+        
+            <div class="container">
+
+  <form>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="excel" >Excel</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="txt" checked>Text (Separador Pipes)</label>
+    </div>
+  </form>
+  <button type="button" onclick="checkedElement()" id="checkedElement">Siguiente</button>
+            </div>
+
+    <div id="excelDiv" style="visibility: hidden; display:none;">
+        Selecciona un documento Excel: <br>
+        <form action="/upload-excel" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload" />
+        <button>Submit</button>
+        </form>
+    </div>
+        <div id="txtDiv" style="visibility: hidden; display:none;">
+            Selecciona un documento TXT/CSV: <br>
+        <form action="/upload-txt" method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadTxt" />
+        <button>Submit</button>
+        </form>
+    </div>
+    </div>
+        
+<script src="./js/carga-facturas.js"></script>
+    </body>
+</html>

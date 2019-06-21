@@ -1,0 +1,41 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<div class="main-content">
+<h1>Registrar Cliente</h1>
+{{!-- <p id="user"></p> --}}
+
+<div class="w3-container"></div>
+      Llena los datos del cliente que quieres registrar.<br>
+      Campos Obligatorios*
+      <br><br>
+            <form>
+                  <input placeholder="Nombre de la empresa*" id="name"><br>
+                  <input placeholder="RFC*" id="rfc"><br>
+                  <input placeholder="Correo*" id="email"><br>
+                  <input placeholder="Telefono" id="phone"><br>
+                  <input placeholder="Dirección*" id="address"><br>
+                    <select name="tipo" class="tipo" id="tipo">
+                         <option value="Proveedor">Proveedor</option>
+                         <option value="Comprador">Comprador</option>
+                         <option value="Banco">Banco</option>
+                   </select><br><br>
+                  </form>
+                  <button class="addBtn" onclick="add()">Registrar</button>
+                  {{!-- <button id="save" onclick="save()">Save</button> --}}
+                  <p id="error"></p>
+
+<div  id="link-api"><a href="http://localhost:3000/prueba">Link api</a></div>
+</div>
+<script src="./js/app.js"></script> 
+</body>
+</html>
