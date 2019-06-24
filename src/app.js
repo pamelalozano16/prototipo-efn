@@ -123,7 +123,7 @@ app.post('/upload-txt', uploadTxt.single('uploadTxt'), (req, res)=>{
         console.log(archivo)
         for(var i in archivo){
             var options = { method: 'POST',
-            url: 'http://localhost:3000/facturaTemp',
+            url: 'https://prototipo-efn.herokuapp.com/facturaTemp',
             headers: 
              { 'cache-control': 'no-cache',
                Connection: 'keep-alive',
@@ -155,7 +155,7 @@ app.post('/upload-excel', upload.single('upload'), (req, res, next)=>{
 
     for(var i in archivo){
         var options = { method: 'POST',
-        url: 'http://localhost:3000/facturaTemp',
+        url: 'hhttps://prototipo-efn.herokuapp.com/facturaTemp',
         headers: 
          { 'cache-control': 'no-cache',
            Connection: 'keep-alive',
@@ -192,7 +192,7 @@ app.get('/carga-facturas',  (req, res) => {
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',
-   url: 'http://localhost:3000/facturaTemp',
+   url: 'https://prototipo-efn.herokuapp.com/facturaTemp',
    headers: 
     { 'cache-control': 'no-cache',
       Connection: 'keep-alive',
