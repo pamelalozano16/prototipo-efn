@@ -155,7 +155,7 @@ app.post('/upload-excel', upload.single('upload'), (req, res, next)=>{
 
     for(var i in archivo){
         var options = { method: 'POST',
-        url: 'hhttps://prototipo-efn.herokuapp.com/facturaTemp',
+        url: 'https://prototipo-efn.herokuapp.com/facturaTemp',
         headers: 
          { 'cache-control': 'no-cache',
            Connection: 'keep-alive',
