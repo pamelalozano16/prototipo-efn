@@ -6,6 +6,7 @@ const userRouter =require('./routers/user')
 const buyerRouter =require('./routers/buyer')
 const facturaRouter =require('./routers/facturaPublicada')
 const facturaTemp =require('./routers/facturaTemp')
+const bancoRouter =require('./routers/bancos')
 const multer = require('multer')
 const excelToJson = require('convert-excel-to-json');
 
@@ -18,6 +19,7 @@ console.log(process.env.MONGODB_URL)
 app.use(express.json())
 app.use(userRouter)
 app.use(buyerRouter)
+app.use(bancoRouter)
 app.use(facturaTemp)
 app.use(facturaRouter);
 
@@ -103,7 +105,6 @@ var storageExcel = multer.diskStorage(
         }
     }
 );
-
 var uploadTxt = multer({storage: storageTxt});
 var upload = multer({ storage: storageExcel});
 

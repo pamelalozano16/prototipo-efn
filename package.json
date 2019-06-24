@@ -13,6 +13,7 @@
     "convert-excel-to-json": "^1.6.1",
     "csvtojson": "^2.0.8",
     "express": "^4.17.1",
+    "git": "^0.1.5",
     "hbs": "^4.0.4",
     "jQuery": "^1.7.4",
     "mongodb": "^3.1.10",

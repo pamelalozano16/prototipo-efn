@@ -75,6 +75,22 @@ fetch('/prueba').then((response)=>{
     })
  })
 
+ fetch('/bancos').then((response)=>{
+     response.json().then((data)=>{
+         if(data.error){return console.log(data.error)}
+         var table = $('#bancos-table');
+         var row, cell;
+         var titles=$('<th></th><th></th><th>Nombre del Banco</th>')
+         table.append(titles)
+         for(var i in data){
+            row = $('<tr />' );
+            table.append( row );
+            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+data[i].name+'</td>')
+            row.append( cell );
+         }
+     })
+ })
+
 async function apiGet(){
     try{
         const resp = await fetch('/prueba')

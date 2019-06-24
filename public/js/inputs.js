@@ -26,24 +26,35 @@ fetch('/prueba').then((response)=>{
             console.log(error)
         }
     }
-    
+
+    let x = -1;
+function addPrueba(){
+    x++;
+    fetch('/bancos').then((response)=>{
+        response.json().then((data)=>{
+            var opciones="<form><select name='tipo-banco"+x+"' class='tipo' id='tipo-banco"+x+"'>"
+            for(var j in data){
+                var opcion="<option value="+data[j].name+">"+data[j].name+"</option>"
+            opciones+=opcion
+            }
+            console.log(opciones)
+            opciones+="</select></form>"
+            var aqui = $("#add-bank-form")
+            var bank= $(opciones)
+            aqui.append(bank)
+        })
+    })
+}
+
+addPrueba()
 
 
-    let i =0;
-    function addbank(){
-        i++;
-        var opciones = "<form><select name='tipo-banco"+i+"' class='tipo' id='tipo-banco"+i+"'><option value='Sabadell'>Sabadell</option><option value='Hitachi'>Hitachi</option></select></form>"
-        var aqui = $("#add-bank-form")
-        var bank= $(opciones)
-        aqui.append(bank)
-
-    }
 
     function banksArray(){
        var banks=[]
         console.log('k')
         var j =0;
-        while(j<=i){console.log($("#tipo-banco"+j).val());
+        while(j<=x){console.log($("#tipo-banco"+j).val());
         let data =  $('#tipo-banco'+j).val()
         banks=banks.concat([{"banco":data}])
         j++;}
@@ -56,7 +67,7 @@ function agregar(){
     let sp = document.getElementById("s-points").value
     let tb = document.getElementById("tasabase").value
     let banks = banksArray()
-    console.log('yes!')
+
     console.log(JSON.stringify(banks))
 
 
@@ -83,59 +94,3 @@ function agregar(){
     })
 }
         
-
-    // function agregar(){
-    //     let id = getId()
-    //     console.log(id)
-    //     fetch('/prueba/'+id, {
-    //         method: "PATCH",
-    //         headers: {          
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'accept-encoding': 'gzip, deflate'
-    //           },
-    //           body: JSON.stringify({
-    //             "tasabase": document.getElementById("tasabase").value,
-    //             "spreadpoints": document.getElementById("s-points").value,
-    //         })
-    //     }).catch(function(error) {
-    //         console.log('Hubo un problema con la petición Fetch:' + error);
-    //       }).then((response)=>{
-    //         console.log(response)
-    //         if(response.ok){
-    //         //   document.location.reload(true)
-    //         } else{
-    //             document.getElementById("error").innerHTML="Error"
-    //         }
-    //     })
-
-    //     var j =0;
-    //     while(j<=i){console.log($("#tipo-banco"+j).val()); j++;}
-    // }
-    
- 
-
-    // fetch('/prueba/'+ids[num], {
-//         method: "PATCH",
-//         headers: {          
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json',
-//             'accept-encoding': 'gzip, deflate'
-//           },
-//           body: JSON.stringify({
-//             "name": document.getElementById("name").value,
-//             "rfc": document.getElementById("rfc").value,
-//             "email": document.getElementById("email").value
-//         })
-//     }).catch(function(error) {
-//         console.log('Hubo un problema con la petición Fetch:' + error);
-//       }).then((response)=>{
-//         console.log(response)
-//         if(response.ok){
-//           document.location.reload(true)
-//         } else{
-//             document.getElementById("error").innerHTML="Error"
-//         }
-//     })
-   
-// }
