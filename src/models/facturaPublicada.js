@@ -26,7 +26,11 @@ const Factura = mongoose.model('facturasPublicadas', {
         type: String
     },
     aforo:
-   { type:Number}
+   { type:Number},
+   status:{
+       type: String,
+       default: 'Publicada'
+   }
 })
 
 // Factura.get('/facturas', async (req, res)=>{
