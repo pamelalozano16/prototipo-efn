@@ -3,6 +3,8 @@ let bIDnums=[]
 let bnames =[]
 let bages= []
 let bids=[]
+let lineaDC=[]
+let diasDG=[]
 fetch('/buyers').then((response)=>{
    response.json().then((data)=>{
        if(data.error){
@@ -15,16 +17,18 @@ fetch('/buyers').then((response)=>{
                    bages = bages.concat(data[i].age)
                    bIDnums[i]=(data[i].IDnum)
                    bids = ids.concat(data[i]._id)
+                   lineaDC=lineaDC.concat(data[i].lineaDeCredito)
+                   diasDG=diasDG.concat(data[i].bufferDays)
                } 
 
                var table = $('#buyers-table');
                var row, cell;
-               var titles = $('<th></th><th></th><th>ID</th><th>Names</th><th>RFC</th>');
+               var titles = $('<th></th><th></th><th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th>');
                table.append(titles)
             for(var i=0; i<bnames.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td>')
+            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td>')
             row.append( cell );
            }
 

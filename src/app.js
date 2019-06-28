@@ -190,6 +190,9 @@ app.get('/p',  (req, res) => {
 app.get('/carga-facturas',  (req, res) => {
     res.render('carga-facturas')
 })
+app.get('/banco-comprador',  (req, res) => {
+    res.render('banco-comprador')
+})
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',

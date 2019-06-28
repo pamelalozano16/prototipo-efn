@@ -21,6 +21,14 @@ const buyerSchema = new mongoose.Schema({
     }, 
     email: {
         type: String
+    }, 
+    lineaDeCredito:{
+        type: Number,
+        default:1000000
+    },
+    bufferDays:{
+        type: Number,
+        default:9
     }
 })
 

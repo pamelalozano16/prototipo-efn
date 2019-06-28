@@ -28,7 +28,7 @@ fetch('/facturas').then((response)=>{
 
                var table = $('#tabla-facturas');
                var row, cell;
-               var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th>Aforo</th><th>Status</th>');
+               var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
                table.append(titles)
             for(var i=0; i<rfcs.length; i++){
             row = $('<tr />' );

@@ -40,6 +40,9 @@ td {
 tr{
   height: 30px;
 }
+th{
+  padding:5px 10px;
+}
 .deletebtn{
   margin-right:10px;
 }

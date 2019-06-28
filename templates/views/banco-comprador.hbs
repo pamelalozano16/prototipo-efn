@@ -1,0 +1,44 @@
+<html>
+    <head>
+
+<style>
+    #edit-btn{
+        float:left;
+    }
+    #save-btn{
+        visibility: hidden;
+        display: none;
+        margin-left:10px;
+        float:left;
+    }
+    #result{
+        margin-top:50px;
+    }
+</style>
+    </head>
+    <body>
+        <h1>Perfil de IACNA Mexico S. de R.L. de C.V.</h1>
+        <form>
+            Search by RFC: <input placeholder="RFC" id="searchRFC">
+            <button type="button" onclick="search()">Search</button>
+        </form>
+        <div id="result">
+            <p id="nombre"></p>
+                <form>
+            <input placeholder="Linea de Credito" id="linea">
+            <input placeholder="Dias de Gracia" id="days">
+                 </form>
+        <div>
+        <button id="edit-btn" onclick="editbtn()">Edit</button>
+        <button id="save-btn" onclick="savebtn()">Save</button>
+        </div>
+        <br>
+    <h2 id="res"></h2>
+        </div>
+
+
+
+        
+<script src="./js/banco-comprador.js"></script> 
+    </body>
+</html>
