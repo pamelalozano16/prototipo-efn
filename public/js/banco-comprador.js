@@ -31,13 +31,14 @@ function search(){
                 document.getElementById("nombre").innerHTML=result[i].name
                 document.getElementById("days").value=result[i].bufferDays
                 document.getElementById("linea").value=result[i].lineaDeCredito
-
+                document.getElementById("aforo").value=result[i].aforoP
                 return result[i]._id
             }
         }
     })
     document.getElementById("days").disabled=true;
 document.getElementById("linea").disabled=true;
+document.getElementById("aforo").disabled=true;
 }
 
 function editbtn(){
@@ -45,6 +46,7 @@ function editbtn(){
     document.getElementById("save-btn").style.display="block";
     document.getElementById("days").disabled=false;
     document.getElementById("linea").disabled=false;
+    document.getElementById("aforo").disabled=false;
 }
 
 
@@ -53,6 +55,7 @@ function editbtn(){
 function savebtn(){
     let linea = document.getElementById("linea").value
     let dias = document.getElementById("days").value
+    let aforo = document.getElementById("aforo").value
     console.log(linea, dias)
     let id = apiGetComprador().then((result)=>{
         for(var i in result){
@@ -72,7 +75,8 @@ function savebtn(){
               },
               body: JSON.stringify({
             "lineaDeCredito": linea,
-            "bufferDays": dias
+            "bufferDays": dias,
+            "aforoP":aforo
             })
         }).then((res)=>{
                 console.log(res)

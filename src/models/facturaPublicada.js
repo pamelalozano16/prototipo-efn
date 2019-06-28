@@ -30,6 +30,10 @@ const Factura = mongoose.model('facturasPublicadas', {
    status:{
        type: String,
        default: 'Publicada'
+   },
+   aforoP:{
+       type:Number,
+       default:100
    }
 })
 

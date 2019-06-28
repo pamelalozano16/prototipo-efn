@@ -23,6 +23,7 @@ function search(){
             document.getElementById("IDnum").value=data[0].IDnum
             document.getElementById("name").value=data[0].name
             document.getElementById("rfc").value=data[0].age
+            document.getElementById("aforoP").value=data[0].aforoP
         })
     })
 }
@@ -45,6 +46,7 @@ function individual(){
     const dueDate = document.getElementById("dueDate").value
     const moneda = document.getElementById("moneda").value
     const aforo = document.getElementById("aforo").value
+    const aforoP = document.getElementById("aforoP").value
 
 
             fetch('/facturas', {
@@ -61,7 +63,8 @@ function individual(){
                     invoiceDate,
                     dueDate,
                     moneda,
-                    aforo
+                    aforo,
+                    aforoP
                 }),
                 json: true
                 }).catch(function(error) {

@@ -7,7 +7,7 @@ let fechasVen = []
 let monedas =[]
 let aforos=[]
 let status=[]
-
+let aforosP=[]
 fetch('/facturas').then((response)=>{
    response.json().then((data)=>{
        if(data.error){
@@ -23,17 +23,18 @@ fetch('/facturas').then((response)=>{
                    fechasVen=fechasVen.concat(data[i].dueDate)
                    monedas=monedas.concat(data[i].moneda)
                    aforos=aforos.concat(data[i].aforo)
+                   aforosP=aforosP.concat(data[i].aforoP)
                    status=status.concat(data[i].status)
                } 
 
                var table = $('#tabla-facturas');
                var row, cell;
-               var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+               var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Aforo</th><th>Status</th>');
                table.append(titles)
             for(var i=0; i<rfcs.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
+            cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+aforosP[i]+'</td><td>'+status[i]+'</td>')
             row.append( cell );
            }
 

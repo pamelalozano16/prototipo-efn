@@ -29,6 +29,10 @@ const buyerSchema = new mongoose.Schema({
     bufferDays:{
         type: Number,
         default:9
+    },
+    aforoP:{
+        type:Number,
+        default:100
     }
 })
 
