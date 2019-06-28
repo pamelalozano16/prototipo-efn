@@ -22,12 +22,8 @@
   }
 
 
-//   apiGet().then((response)=>{
-//     let newID = response[response.length-1].IDnum+1;
-//     document.getElementById("IDnum").innerHTML=newID;
-//   })
-
 function search(){
+    document.getElementById("res").innerHTML=""
     apiGetComprador().then((result)=>{
         for(var i in result){
             if(result[i].age==document.getElementById("searchRFC").value){
