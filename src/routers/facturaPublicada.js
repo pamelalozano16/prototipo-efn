@@ -40,6 +40,18 @@ router.patch('/facturas/:id', async (req, res)=>{
     }
 })
 
+router.get('/searchF/:numero', async (req, res)=>{
+    invoiceNumber=req.params.numero
 
+    try{
+        const user = await Factura.find({"numero":invoiceNumber})
+        if(!user){throw new Error ('not found')}
+
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send(e.message)
+    }
+})
 
 module.exports =router

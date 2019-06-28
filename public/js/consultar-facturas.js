@@ -8,6 +8,9 @@ let monedas =[]
 let aforos=[]
 let status=[]
 
+
+
+
 fetch('/facturas').then((response)=>{
    response.json().then((data)=>{
        if(data.error){
@@ -28,12 +31,12 @@ fetch('/facturas').then((response)=>{
 
                var table = $('#tabla-facturas');
                var row, cell;
-               var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+               var titles = $('<th></th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
                table.append(titles)
             for(var i=0; i<rfcs.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
+            cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
             row.append( cell );
            }
 
@@ -42,3 +45,47 @@ fetch('/facturas').then((response)=>{
       
    })
 })
+
+async function apiGet(){
+    try{
+        const resp = await fetch('/facturas')
+        const data = await resp.json()
+        return data
+    } catch(error){
+        console.log(error)
+    }
+  }
+  
+
+function descontar(){
+    fetch('/facturaTemp', {
+        method: "DELETE"
+    })
+    let checked=[]    
+    apiGet().then((response)=>{ 
+        for(var i in response){
+           if (document.getElementById("cb-"+i).checked==true){
+               checked=checked.concat(document.getElementById("cb-"+i).value)
+           }
+        }
+        for(var n in checked){
+            fetch('/searchF/'+checked[n]).then((result)=>{
+                result.json().then((data)=>{
+                    console.log(data)
+                    fetch('/facturaTemp', {
+                        method: "POST",
+                        headers: {          
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'accept-encoding': 'gzip, deflate'
+                          },
+                        body: JSON.stringify(data[0]),
+                        json: true
+                        })
+
+                })
+            })
+        }
+
+    })
+}

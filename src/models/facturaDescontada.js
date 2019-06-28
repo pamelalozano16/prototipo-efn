@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const FacturaD = mongoose.model('facturasPublicadas', {
+const FacturaD = mongoose.model('facturasDescontadas', {
     rfc: {
         type: String,
         validate(value){
