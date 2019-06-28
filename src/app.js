@@ -163,7 +163,7 @@ app.post('/upload-excel', upload.single('upload'), (req, res, next)=>{
            'accept-encoding': 'gzip, deflate',
            Accept: '*/*',
            'Content-Type': 'application/json' },
-        body: archivo[i]+{"aforoP":92},
+        body: archivo[i],
         json: true };
       
       request(options, function (error, response, body) {
