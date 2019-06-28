@@ -26,6 +26,9 @@ const Factura = mongoose.model('facturaTemporal', {
         type: String
     },
     aforo:
-   { type:Number}
+   { type:Number},
+   aforoP:{
+       type:Number
+   }
 })
 module.exports = Factura
