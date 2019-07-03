@@ -112,9 +112,8 @@ function descontar(){
 
 
 
-    }).then((res)=>{
-        console.log(res)
-    window.location.href = '/descontar-facturas';
     })
+    window.location.href = '/descontar-facturas';
+
             
 }
