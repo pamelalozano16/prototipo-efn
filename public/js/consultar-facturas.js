@@ -111,7 +111,7 @@ function descontar(){
         }
 
 
-        // window.location.href = '/descontar-facturas';
+        window.location.href = '/descontar-facturas';
     })
             
 }
