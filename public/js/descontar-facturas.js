@@ -147,7 +147,7 @@ async function apiGet(){
                 const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
                 const creditSpread=document.getElementById("spreadPoints").innerHTML
                 const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
-                const purchasePrice=advanceRate-discountMargin
+                const purchasePrice=roundNum(advanceRate-discountMargin)
 
           fetch('/facturaTemp/'+_id, {
             method: "PATCH",

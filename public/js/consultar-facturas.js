@@ -112,8 +112,9 @@ function descontar(){
 
 
 
-    }).then(()=>{
-        // window.location.href = '/descontar-facturas';
+    }).then((res)=>{
+        console.log(res)
+    window.location.href = '/descontar-facturas';
     })
             
 }
