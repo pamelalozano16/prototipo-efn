@@ -30,9 +30,14 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 </div>
 <div style="margin-top:30px;">
     <button style="float:left;" onclick="window.location.href='/carga-facturas'">Cargar</button>
-    <button style="float:right;" onclick="descontar()">Descontar</button>
+
+    <button style="float:right;"  onclick="window.location.href='/descontar-facturas'">Descontar</button>
 </div>
-<div style="margin-top:100px;">
+<div style="margin-top:90px;">
+<button style=" background-color:brown;" onclick="descontar()">Seleccionar</button>
+</div>
+ 
+<div style="margin-top:50px;">
 
     <table id="tabla-facturas"></table>
 </div>
