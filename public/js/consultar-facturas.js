@@ -112,8 +112,6 @@ function descontar(){
 
 
 
-    }).then((res)=>{
-        console.log(res)
 
     })
             
