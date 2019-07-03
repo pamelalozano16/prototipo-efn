@@ -17,6 +17,7 @@ router.delete('/prueba/:id', async (req, res)=>{
 })
 
 router.patch('/prueba/:id', async (req, res)=>{
+
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'email', 'password', 'rfc']
     const isValid = updates.every((item)=>{

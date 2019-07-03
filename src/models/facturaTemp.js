@@ -29,6 +29,41 @@ const Factura = mongoose.model('facturaTemporal', {
    { type:Number},
    aforoP:{
        type:Number
-   }
+   },
+   status:{
+       type:String,
+       default:"En Proceso"
+   },
+   iva:{
+    type:Number
+},
+extras:{
+    type:Number
+},
+purchaseDate:{
+    type: Date
+},
+advanceRate:{
+    type:Number
+},
+bufferDays:{
+    type:Number
+},
+discountPeriod:{
+    type:Number
+},
+libor:{
+    type:Number
+},
+creditSpread:{
+    type:Number,
+    default:3
+},
+discountMargin:{
+    type:Number
+},
+purchasePrice:{
+    type:Number
+}
 })
 module.exports = Factura

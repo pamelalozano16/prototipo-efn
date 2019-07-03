@@ -36,4 +36,17 @@ router.delete('/facturaTemp', async(req, res)=>{
     }
 })
 
+
+router.patch('/facturaTemp/:id', async (req, res)=>{
+    const _id = req.params.id
+    try{
+       const user = await Factura.findByIdAndUpdate(_id, req.body, {new: true, runValidators: true})
+       if(!user){return res.status(404).send('Not found')}
+       res.send(user)
+    }
+    catch(e){
+        res.send(e)
+    }
+})
+
 module.exports =router

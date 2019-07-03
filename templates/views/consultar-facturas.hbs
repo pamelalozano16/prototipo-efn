@@ -18,12 +18,18 @@
         font-size:14px;
     }
 </style>
+    <script src="./js/libor.js"></script>
 </head>
 <body>
 <div class="main-content">
-<h1>Consultar Facturas</h1>
+<h1>Consultar Facturas IANCA</h1>
 <p id="error"></p>
-<div>
+<div style="margin-top:30px">
+Spread Points: <p id="spreadPoints" style="display:inline;"></p><br>
+Libor: <p id="libor" style="display:inline;">2.35</p>% USD
+</div>
+<div style="margin-top:30px;">
+    <button style="float:left;" onclick="window.location.href='/carga-facturas'">Cargar</button>
     <button style="float:right;" onclick="descontar()">Descontar</button>
 </div>
 <div style="margin-top:100px;">

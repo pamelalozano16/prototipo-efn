@@ -6,6 +6,7 @@ const userRouter =require('./routers/user')
 const buyerRouter =require('./routers/buyer')
 const facturaRouter =require('./routers/facturaPublicada')
 const facturaTemp =require('./routers/facturaTemp')
+const facturaDescontada =require('./routers/facturaDescontada')
 const bancoRouter =require('./routers/bancos')
 const multer = require('multer')
 const excelToJson = require('convert-excel-to-json');
@@ -21,6 +22,7 @@ app.use(userRouter)
 app.use(buyerRouter)
 app.use(bancoRouter)
 app.use(facturaTemp)
+app.use(facturaDescontada)
 app.use(facturaRouter);
 
 function excel2json(){
@@ -192,6 +194,9 @@ app.get('/carga-facturas',  (req, res) => {
 })
 app.get('/banco-comprador',  (req, res) => {
     res.render('banco-comprador')
+})
+app.get('/descontar-facturas',  (req, res) => {
+    res.render('descontar-facturas')
 })
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()

@@ -9,7 +9,19 @@ let aforos=[]
 let status=[]
 
 
+async function apiGetProveedores(){
+    try{
+        const resp = await fetch('/prueba')
+        const data = await resp.json()
+        return data
+    } catch(error){
+        console.log(error)
+    }
+  }
 
+  apiGetProveedores().then((result)=>{
+      document.getElementById("spreadPoints").innerHTML=result[0].spreadpoints
+  })
 
 fetch('/facturas').then((response)=>{
    response.json().then((data)=>{
@@ -55,9 +67,20 @@ async function apiGet(){
         console.log(error)
     }
   }
+  async function apiGetTemp(){
+    try{
+        const resp = await fetch('/facturaTemp')
+        const data = await resp.json()
+        return data
+    } catch(error){
+        console.log(error)
+    }
+  }
   
 
+
 function descontar(){
+    const libor=document.getElementById("libor").innerHTML
     fetch('/facturaTemp', {
         method: "DELETE"
     })
@@ -71,7 +94,7 @@ function descontar(){
         for(var n in checked){
             fetch('/searchF/'+checked[n]).then((result)=>{
                 result.json().then((data)=>{
-                    console.log(data)
+
                     fetch('/facturaTemp', {
                         method: "POST",
                         headers: {          
@@ -87,5 +110,8 @@ function descontar(){
             })
         }
 
+
+        window.location.href = '/descontar-facturas';
     })
+            
 }
