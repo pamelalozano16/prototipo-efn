@@ -77,7 +77,10 @@ async function apiGet(){
     }
   }
   
-
+  function redirect()
+  {
+      window.location.href="/descontar-facturas";
+  }
 
 function descontar(){
     const libor=document.getElementById("libor").innerHTML
@@ -110,7 +113,7 @@ function descontar(){
             })
         }
 
-
+        redirect()
 
 
     })
