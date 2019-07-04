@@ -26,7 +26,7 @@ async function apiGetProveedores(){
 fetch('/facturas').then((response)=>{
    response.json().then((data)=>{
        if(data.error){
-           document.getElementById("error").innerHTML = data.error;
+          
            return console.log(data.error)
        } else{
               
