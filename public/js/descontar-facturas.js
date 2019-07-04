@@ -114,95 +114,95 @@ async function apiGet(){
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
-    apiGet().then((result)=>{
+    // apiGet().then((result)=>{
 
-      var i =0
-        let data = result
-        console.log('Data facturaTemp:',data)
+    //   var i =0
+    //     let data = result
+    //     console.log('Data facturaTemp:',data)
 
-       while(i<=data.length-1){
-           //Variables nuevas
-         var newIva=0;
-          const purchaseDate=curday('/',0)
-          const aforoo=data[i].aforo
-          const dueDay=(new Date(data[i].dueDate).getDate())
-          const dueMonth=(new Date(data[i].dueDate).getMonth()+1)
-          const _id=data[i]._id
-          const theRFC = data[i].rfc
-
-
-          fetch('/search/'+theRFC).then((response)=>{
-            response.json().then((buyerData)=>{
+    //    while(i<=data.length-1){
+    //        //Variables nuevas
+    //      var newIva=0;
+    //       const purchaseDate=curday('/',0)
+    //       const aforoo=data[i].aforo
+    //       const dueDay=(new Date(data[i].dueDate).getDate())
+    //       const dueMonth=(new Date(data[i].dueDate).getMonth()+1)
+    //       const _id=data[i]._id
+    //       const theRFC = data[i].rfc
 
 
-              newIva=aforoo/1.16*0.16
-              newIva=Math.round(newIva * 100) / 100
-                const aforoP=buyerData[0].aforoP; console.log(aforoP)
-                const bufferDays=buyerData[0].bufferDays; console.log(bufferDays)
-                const advanceRate=roundNum(aforoo*(aforoP/100))
-                const pDay=(new Date (purchaseDate)).getDate()
-                const pMonth=(new Date (purchaseDate)).getMonth()+1
-                const matuDate= matDate(dueDay, dueMonth, bufferDays)
-                const discountPeriod= discPeriod(matuDate[0], matuDate[1], pDay, pMonth)
-                const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
-                const creditSpread=document.getElementById("spreadPoints").innerHTML
-                const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
-                const purchasePrice=roundNum(advanceRate-discountMargin)
+    //       fetch('/search/'+theRFC).then((response)=>{
+    //         response.json().then((buyerData)=>{
 
-          fetch('/facturaTemp/'+_id, {
-            method: "PATCH",
-            headers: {          
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'accept-encoding': 'gzip, deflate'
-              },
-              body: JSON.stringify({
-               "iva":newIva,
-              "status": "En proceso",
-                purchaseDate,
-                aforoP,
-                bufferDays,
-                advanceRate,
-                discountPeriod,
-                creditSpread,
-                libor,
-                discountMargin,
-                purchasePrice
-            })
-        }).catch(function(error) {
-            console.log('Hubo un problema con la petición Fetch:' + error);
-          }).then((response)=>{
 
-            console.log(response)
-            if(response.ok){
+    //           newIva=aforoo/1.16*0.16
+    //           newIva=Math.round(newIva * 100) / 100
+    //             const aforoP=buyerData[0].aforoP; console.log(aforoP)
+    //             const bufferDays=buyerData[0].bufferDays; console.log(bufferDays)
+    //             const advanceRate=roundNum(aforoo*(aforoP/100))
+    //             const pDay=(new Date (purchaseDate)).getDate()
+    //             const pMonth=(new Date (purchaseDate)).getMonth()+1
+    //             const matuDate= matDate(dueDay, dueMonth, bufferDays)
+    //             const discountPeriod= discPeriod(matuDate[0], matuDate[1], pDay, pMonth)
+    //             const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
+    //             const creditSpread=document.getElementById("spreadPoints").innerHTML
+    //             const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
+    //             const purchasePrice=roundNum(advanceRate-discountMargin)
 
-            //   document.location.reload(true)
-            } else{
-                document.getElementById("error").innerHTML="Error"
-            }
-        })
+    //       fetch('/facturaTemp/'+_id, {
+    //         method: "PATCH",
+    //         headers: {          
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //             'accept-encoding': 'gzip, deflate'
+    //           },
+    //           body: JSON.stringify({
+    //            "iva":newIva,
+    //           "status": "En proceso",
+    //             purchaseDate,
+    //             aforoP,
+    //             bufferDays,
+    //             advanceRate,
+    //             discountPeriod,
+    //             creditSpread,
+    //             libor,
+    //             discountMargin,
+    //             purchasePrice
+    //         })
+    //     }).catch(function(error) {
+    //         console.log('Hubo un problema con la petición Fetch:' + error);
+    //       }).then((response)=>{
+
+    //         console.log(response)
+    //         if(response.ok){
+
+    //         //   document.location.reload(true)
+    //         } else{
+    //             document.getElementById("error").innerHTML="Error"
+    //         }
+    //     })
             
-            })
-        })
+    //         })
+    //     })
 
-          // libor:{
-          //     type:Number
-          // },
-          // creditSpread:{
-          //     type:Number
-          // },
-          // discountMargin:{
-          //     type:Number
-          // },
-          // purchasePrice:{
-          //     type:Number
-          // }
+    //       // libor:{
+    //       //     type:Number
+    //       // },
+    //       // creditSpread:{
+    //       //     type:Number
+    //       // },
+    //       // discountMargin:{
+    //       //     type:Number
+    //       // },
+    //       // purchasePrice:{
+    //       //     type:Number
+    //       // }
   
   
-        i++;
-          //End of loop de data
-       }
-    })
+    //     i++;
+    //       //End of loop de data
+    //    }
+    // })
 
 
 fetch('/facturaTemp').then((response)=>{

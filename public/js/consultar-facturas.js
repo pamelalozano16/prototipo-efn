@@ -48,7 +48,7 @@ fetch('/facturas').then((response)=>{
             for(var i=0; i<rfcs.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
+            cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
             row.append( cell );
            }
 
@@ -77,16 +77,13 @@ async function apiGet(){
     }
   }
   
-  function redirect()
-  {
-      window.location.href="/descontar-facturas";
-  }
+
 
 function descontar(){
     const libor=document.getElementById("libor").innerHTML
-    fetch('/facturaTemp', {
-        method: "DELETE"
-    })
+    // fetch('/facturaTemp', {
+    //     method: "DELETE"
+    // })
     let checked=[]    
     apiGet().then((response)=>{ 
         for(var i in response){
@@ -107,13 +104,15 @@ function descontar(){
                           },
                         body: JSON.stringify(data[0]),
                         json: true
+                        }).then((result)=>{
+                            console.log(result)
                         })
 
                 })
             })
         }
 
-        redirect()
+       createData()
 
 
     })

@@ -34,7 +34,7 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
     <button style="float:right;"  onclick="window.location.href='/descontar-facturas'">Descontar</button>
 </div>
 <div style="margin-top:90px;">
-<button type="submit" style=" background-color:brown;" onclick="descontar()">Seleccionar</button>
+{{!-- <button style=" background-color:brown;" onclick="descontar()">Seleccionar</button> --}}
 </div>
  
 <div style="margin-top:50px;">
@@ -43,9 +43,18 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 </div>
 
 </div>
-        
+        <script>
+
+            window.onload = function() {
+                
+            fetch('/facturaTemp', {
+        method: "DELETE"
+    })}
+    
+        </script>
 
 
+    <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
 </body>
 </html>
