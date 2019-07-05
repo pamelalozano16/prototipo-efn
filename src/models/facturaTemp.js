@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 
 
 const Factura = mongoose.model('facturaTemporal', {
+    name:{
+        type: String
+    },
     rfc: {
         type: String,
         validate(value){

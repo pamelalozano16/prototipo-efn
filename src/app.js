@@ -195,6 +195,9 @@ app.get('/carga-facturas',  (req, res) => {
 app.get('/banco-comprador',  (req, res) => {
     res.render('banco-comprador')
 })
+app.get('/banco-facturas',  (req, res) => {
+    res.render('banco-facturas')
+})
 app.get('/descontar-facturas',  (req, res) => {
     res.render('descontar-facturas')
 })

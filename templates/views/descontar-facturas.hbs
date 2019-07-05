@@ -18,6 +18,11 @@
         padding: 10px 15px;
         font-size:14px;
     }
+    #result{
+        margin-top:30px;
+        font-size:20px;
+        font-weight: bold;
+    }
     </style>
 
     </head>
@@ -29,11 +34,12 @@
            Spread Points: <p id="spreadPoints" style="display:inline;">3</p><br>
             Libor: <p id="libor" style="display:inline;">2.35</p>% USD
        </div>
+       <h1 id="result">Las facturas se han descontado, se te notificará cuando el banco confirme.</h1>
         <table id="tabla-resumen" style="margin-top:50px;"></table>
         <div style="margin-top:30px;">
             
             <button style="float:left" onclick="window.location.href='/consultar-facturas'">Regresar</button>
-            <button style="float:left; margin-right:10px;">Confirmar</button>
+            <button style="float:left; margin-right:10px;" onclick="confirmarDescuento()" id="confirmar">Confirmar</button>
         </div>
         <script>
 

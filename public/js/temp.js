@@ -129,7 +129,7 @@ function createData(){
             fetch('/search/'+theRFC).then((response)=>{
               response.json().then((buyerData)=>{
   
-  
+                const name=buyerData[0].name
                 newIva=aforoo/1.16*0.16
                 newIva=Math.round(newIva * 100) / 100
                   const aforoP=buyerData[0].aforoP; console.log(aforoP)
@@ -162,7 +162,8 @@ function createData(){
                   creditSpread,
                   libor,
                   discountMargin,
-                  purchasePrice
+                  purchasePrice,
+                  name
               })
           }).catch(function(error) {
               console.log('Hubo un problema con la petición Fetch:' + error);

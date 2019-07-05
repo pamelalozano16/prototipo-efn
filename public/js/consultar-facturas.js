@@ -94,7 +94,7 @@ function descontar(){
         for(var n in checked){
             fetch('/searchF/'+checked[n]).then((result)=>{
                 result.json().then((data)=>{
-
+                    console.log(data)
                     fetch('/facturaTemp', {
                         method: "POST",
                         headers: {          

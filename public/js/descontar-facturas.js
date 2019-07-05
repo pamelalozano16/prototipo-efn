@@ -1,5 +1,6 @@
 
- 
+ document.getElementById("result").style.visibility="hidden";
+ document.getElementById("result").style.display="none";
         
 let rfcs = []
 let numeros =[]
@@ -151,9 +152,44 @@ fetch('/facturaTemp').then((response)=>{
     })
  })
 
-    
 
- 
+
+ function confirmarDescuento(){
+apiGet().then((result)=>{
+  for(var i in result){
+    fetch('/facturasDescontadas',{
+      method: 'POST',
+      headers: {          
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'accept-encoding': 'gzip, deflate'
+      },
+      body:JSON.stringify(result[i]),
+      json:true
+    })
+
+  }
+
+}).then(()=>{
+  document.getElementById("tabla-resumen").style.visibility="hidden";
+  document.getElementById("tabla-resumen").style.display="none";
+  document.getElementById("confirmar").style.visibility="hidden";
+  document.getElementById("confirmar").style.display="none";
+  document.getElementById("result").style.visibility="visible";
+  document.getElementById("result").style.display="block";
+  fetch('/facturaTemp',{
+    method: 'DELETE'
+  })
+
+
+})
+
+ }   
+
+
+
+
+
 
 
   

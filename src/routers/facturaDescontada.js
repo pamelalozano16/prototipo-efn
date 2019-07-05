@@ -27,4 +27,26 @@ router.post('/facturasDescontadas', async (req,res)=>{
 
 })
 
+router.delete('/facturasDescontadas', async (req, res)=>{
+    try{
+        const facturas= await FacturaD.remove({})
+        res.send(facturas)
+    } catch(e){
+        res.status(500).send(e.message)
+    }
+})
+
+router.patch('/facturasDescontadas/:id', async (req, res)=>{
+    const _id = req.params.id
+    try{
+       const user = await FacturaD.findByIdAndUpdate(_id, req.body, {new: true, runValidators: true})
+       if(!user){return res.status(404).send('Not found')}
+       res.send(user)
+    }
+    catch(e){
+        res.send(e)
+    }
+})
+
+
 module.exports =router

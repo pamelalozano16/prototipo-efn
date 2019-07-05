@@ -80,10 +80,52 @@ function savebtn(){
             })
         }).then((res)=>{
                 console.log(res)
-                document.getElementById("res").innerHTML="GUARDADO"
+                window.location.reload()
             
         }).catch((error)=>{
             console.log('Hubo un problema con la petición Fetch:' + error);
           })
     })
 }
+
+
+let bIDnums=[]
+let bnames =[]
+let bages= []
+let bids=[]
+let lineaDC=[]
+let diasDG=[]
+let aforoP=[]
+fetch('/buyers').then((response)=>{
+   response.json().then((data)=>{
+       if(data.error){
+           document.getElementById("user").innerHTML = data.error;
+           return console.log(data.error)
+       } else{
+              
+               for(var i in data){
+                   bnames = bnames.concat(data[i].name)
+                   bages = bages.concat(data[i].age)
+                   bIDnums[i]=(data[i].IDnum)
+                   bids = bids.concat(data[i]._id)
+                   lineaDC=lineaDC.concat(data[i].lineaDeCredito)
+                   diasDG=diasDG.concat(data[i].bufferDays)
+                   aforoP=aforoP.concat(data[i].aforoP)
+               } 
+
+               var table = $('#compradores');
+               var row, cell;
+               var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th><th>% Aforo</th>');
+               table.append(titles)
+            for(var i=0; i<bnames.length; i++){
+            row = $('<tr />' );
+            table.append( row );
+            cell = $('<td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            row.append( cell );
+           }
+
+           // document.getElementById("user").innerHTML = JSON.stringify(data);
+       }
+      
+   })
+})

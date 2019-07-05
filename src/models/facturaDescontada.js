@@ -10,6 +10,9 @@ const FacturaD = mongoose.model('facturasDescontadas', {
             }
         },
     },
+    name:{
+        type:String
+    },
     numero:{
         type: String
     },

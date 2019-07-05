@@ -1,9 +1,29 @@
 <html>
     <head>
 
+
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+    body{
+        max-width: 1250px;
+
+    }
+    td{
+        width:auto;
+        padding: 10px 10px;
+        font-size:14px;
+    }
     #edit-btn{
         float:left;
+    }
+    .selloffers{
+        background-color: #0b7f43;
+        width:150px;
     }
     #save-btn{
         visibility: hidden;
@@ -18,10 +38,13 @@
     </head>
     <body>
         <h1>Perfil de IACNA Mexico S. de R.L. de C.V.</h1>
+
         <form>
             Search by RFC: <input placeholder="RFC" id="searchRFC">
+         
             <button type="button" onclick="search()">Search</button>
         </form>
+                   Línea de Credito: 3,000,000
         <div id="result">
             <p id="nombre"></p>
                 <form>
@@ -34,10 +57,13 @@
         <button id="save-btn" onclick="savebtn()">Save</button>
         </div>
         <br>
-    <h2 id="res"></h2>
+    <h2 id="res" style="margin: 10px"></h2>
         </div>
 
-
+    <div style="margin-top:50px;">
+        <button class="selloffers" onclick="window.location.href='/banco-facturas'">Sell Offers</button>
+        <table id="compradores" style="margin-top:30px;"></table>
+    </div>
 
         
 <script src="./js/banco-comprador.js"></script> 
