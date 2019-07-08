@@ -71,6 +71,9 @@ li a:hover {
        {{>header}}
 
        {{>sidebar}}
+       <script>
+           document.getElementById("sidebar").style.width=(document.getElementsByClassName("main").style.width)
+       </script>
        <div class="main">
      <h1>Cargar Factura</h1>
         <div style="margin-top:20px; float: left;">
