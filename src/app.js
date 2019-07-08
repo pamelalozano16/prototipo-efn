@@ -1,6 +1,7 @@
 const express= require('express')
 const path = require('path')
 var request = require("request");
+const hbs = require('hbs');
 require('./db/mongoose')
 const userRouter =require('./routers/user')
 const buyerRouter =require('./routers/buyer')
@@ -112,9 +113,12 @@ var upload = multer({ storage: storageExcel});
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
+
 
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
 
 app.use(express.static(publicDirectoryPath))
 
@@ -200,6 +204,9 @@ app.get('/banco-facturas',  (req, res) => {
 })
 app.get('/descontar-facturas',  (req, res) => {
     res.render('descontar-facturas')
+})
+app.get('/proveedor',  (req, res) => {
+    res.render('logins/login-proveedor')
 })
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()

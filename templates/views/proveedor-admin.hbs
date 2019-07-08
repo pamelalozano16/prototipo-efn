@@ -1,21 +1,75 @@
 <html>
 <head>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="./css/buyer.css">
+<link rel="stylesheet" href="./css/register.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+      <style>
+
+header{
+    background-color: #183c56;
+    z-index:1;
+    height: 50px;
+}
+ .main{
+       margin: 50px auto;
+       padding-left:200px;
+ }   
+
+body{
+            max-width:none;
+            margin:0;
+      }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+   border-bottom: solid 1px #b5b3b3;
+    padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar{
+      float:left;
+      height:120%;
+      width: 200px;
+      position:absolute;
+      background-color:#292c35;
+      z-index:0;
+     color: white;
+    padding-top: 90px;
+
+}
+</style>
 
 </head>
 <body>
-<h1>Alta de Compradores</h1>
+       {{>header}}
+
+       {{>sidebar}}
+       <div class="main">
+<h1>Mis Clientes</h1>
 {{!-- <p id="user"></p> --}}
 <a href="http://localhost:3000/prueba">Link api</a>
 <br>
 
 <div class="row">
- <form style="margin-bottom: 50px;">
+ <form>
       <div class="column" style="width:100px;">
        ID: <p id="IDnum" style="display: inline;"></p>
        </div>     
@@ -37,6 +91,8 @@
 
 
 </div>
+       </div>
+
            
 
 <script src="./js/buyer-js.js"></script> 

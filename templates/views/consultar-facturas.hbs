@@ -8,10 +8,54 @@
 <link rel="stylesheet" href="./css/register.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body{
-        max-width: 1250px;
 
-    }
+header{
+    background-color: #183c56;
+    z-index:1;
+        height: 50px;
+}
+ .main{
+       margin: 50px auto;
+       padding-left:200px;
+       max-width:1300px;
+ }   
+
+body{
+            max-width:none;
+            margin:0;
+      }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+   border-bottom: solid 1px #b5b3b3;
+    padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar{
+      float:left;
+      height:120%;
+      width: 200px;
+      position:absolute;
+      background-color:#292c35;
+      z-index:0;
+     color: white;
+    padding-top: 90px;
+
+}
     td{
         width:auto;
         padding: 10px 10px;
@@ -21,7 +65,10 @@
     {{!-- <script src="./js/libor.js"></script> --}}
 </head>
 <body>
-<div class="main-content">
+        {{>header}}
+
+       {{>sidebar}}
+<div class="main">
 <h1>Consultar Facturas IANCA</h1>
 
 <div style="margin-top:30px">

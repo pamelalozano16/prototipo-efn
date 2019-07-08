@@ -137,7 +137,7 @@ body {
   line-height: 30px;
   margin: 30 auto;
   /* margin-left:30%; */
-  max-width: 1200px;
+  /* max-width: 1200px; */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -148,7 +148,31 @@ html, body {
 }
 #carga-individual{
     margin: 20px 5px;
+    padding-top:50px;
 }
 form{
     margin-top:20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
