@@ -13,9 +13,64 @@
         font-size:14px;
         width:auto;
     }
+    
+      <style>
+
+header{
+    background-color: #183c56;
+    z-index:1;
+        height: 50px;
+}
+ .main{
+       margin: 50px auto;
+       min-width:400px;
+
+ }   
+
+body{
+    
+            margin:0;
+      }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+   border-bottom: solid 1px #b5b3b3;
+    padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar{
+      float:left;
+      height:120%;
+      width: 200px;
+      position:absolute;
+      background-color:#292c35;
+      z-index:0;
+     color: white;
+    padding-top: 90px;
+
+}
+
+
 </style>
     </head>
     <body>
+       {{>header}}
+
+       {{>sidebar}}
      <h1>Cargar Factura</h1>
         <div style="margin-top:20px; float: left;">
         Tipo de carga: <button id="individual">Individual</button>
