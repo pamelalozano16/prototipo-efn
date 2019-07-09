@@ -35,7 +35,7 @@ const Factura = mongoose.model('facturaTemporal', {
    },
    status:{
        type:String,
-       default:"Publicada"
+       default:'Publicada'
    },
    iva:{
     type:Number

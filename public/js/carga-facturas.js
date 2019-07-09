@@ -64,8 +64,7 @@ function individual(){
                     dueDate,
                     moneda,
                     aforo,
-                    aforoP,
-                    "status":"Publicada"
+                    aforoP
                 }),
                 json: true
                 }).catch(function(error) {
