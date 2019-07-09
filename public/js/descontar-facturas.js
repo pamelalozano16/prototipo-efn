@@ -179,11 +179,10 @@ apiGet().then((result)=>{
         body: JSON.stringify({
           "status":"En Proceso"
         })
-        }).then((resulto)=>{
-          console.log("RESULTADO PATCH:", resulto)
+        
         })
-    })
-  
+      })
+    }
 
 }).then(()=>{
 
