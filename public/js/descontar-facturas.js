@@ -168,21 +168,24 @@ apiGet().then((result)=>{
       json:true
     })
     fetch('/searchF/'+result[i].numero).then((factura)=>{
-      const id = factura[0]._id
-      fetch('/facturas/'+id, {
-        method: "PATCH",
-        headers: {          
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'accept-encoding': 'gzip, deflate'
-        },
-        body: JSON.stringify({
-          "status":"En Proceso"
-        })
-        
-        })
+      factura.json().then((facturaR)=>{
+        const id = facturaR[0]._id
+        fetch('/facturas/'+id, {
+          method: "PATCH",
+          headers: {          
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'accept-encoding': 'gzip, deflate'
+          },
+          body: JSON.stringify({
+            "status":"En Proceso"
+          })
+          
+          })
       })
-    }
+
+      })
+                    }
 
 }).then(()=>{
 
