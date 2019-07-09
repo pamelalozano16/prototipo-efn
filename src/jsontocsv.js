@@ -29,7 +29,7 @@ module.exports = {
  async jsontocsv(){
   const pDPath = path.join(__dirname, '../public/vendidas.csv')
     try{
-        const res = await fetch('http://localhost:3000/facturasVendidas')
+        const res = await fetch('https://prototipo-efn.herokuapp.com/facturasVendidas')
         const data = await res.json()
 
         const fields = [
