@@ -139,3 +139,75 @@ fetch('/facturasDescontadas').then((response)=>{
        
     })
  })
+ fetch('/facturasVendidas').then((response)=>{
+  response.json().then((data)=>{
+      if(data.error){
+         
+          return console.log(data.error)
+      } else if(data.length>0){
+        document.getElementById("result2").style.visibility="hidden";
+        document.getElementById("result2").style.display="none";
+
+              var table = $('#facturas-vendidas');
+              var row, cell;
+              var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+              table.append(titles)
+           for(var i=0; i<data.length; i++){
+           row = $('<tr />' );
+           table.append( row );
+           cell = $('<td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
+           '</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+data[i].aforo+'</td><td>'+data[i].status+'</td>')
+           row.append( cell );
+          }
+
+          // document.getElementById("user").innerHTML = JSON.stringify(data);
+      }
+     
+  })
+})
+
+async function apiGet(){
+  try{
+    const res = await fetch('/facturasDescontadas')
+    const data = res.json()
+    return data
+  } catch(e){
+    console.log(e)
+  }
+}
+
+ async function venderFacturas(){
+   try{
+    const result = await apiGet()
+    for(var i in result){
+     if(document.getElementById("cb-"+i).checked==true){ 
+       const num = document.getElementById("cb-"+i).value
+       const facturaJSON = await fetch('/searchF/'+num)
+       const factura = await facturaJSON.json()
+      fetch('/facturas/'+factura[0]._id,{
+        method: "PATCH",
+        headers: {          
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'accept-encoding': 'gzip, deflate'
+        },
+        body: JSON.stringify({
+          "status":"Vendida"
+        }),
+        json:true
+      })
+      const facturaDesJSON = await fetch('/searchFd/'+num)
+      const facturaDes = await facturaDesJSON.json()
+      await fetch('/facturasDescontadas/'+facturaDes[0]._id, {
+        method: "DELETE"
+      }) 
+      document.location.reload(true)
+    }
+    
+    }
+   } catch(e){
+     console.log(e)
+   }
+
+
+ }

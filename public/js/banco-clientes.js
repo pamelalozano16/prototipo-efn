@@ -26,7 +26,7 @@ fetch('/prueba').then((response)=>{
 
                var table = $('#myTable');
                var row, cell;
-               var titles = $('<th></th><th></th><th>Names</th><th>RFC</th><th>Tasa Base</th><th>Spread Points</th><th>Email</th>');
+               var titles = $('<th></th><th></th><th></th><th>Names</th><th>RFC</th><th>Tasa Base</th><th>Spread Points</th><th>Email</th>');
                table.append(titles)
             for(var i=0; i<names.length; i++){
             row = $('<tr />' );

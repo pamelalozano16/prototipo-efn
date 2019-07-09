@@ -27,6 +27,18 @@ router.post('/facturasDescontadas', async (req,res)=>{
 
 })
 
+router.delete('/facturasDescontadas/:id', async (req, res)=>{
+    const _id = req.params.id
+    try{
+        const user = await FacturaD.findByIdAndDelete(_id)  
+        if(!user){return res.status(404).send('Not Found')}
+        res.send(user)
+    } catch(e){
+        res.status(500).send(e.message)
+    }
+})
+
+
 router.delete('/facturasDescontadas', async (req, res)=>{
     try{
         const facturas= await FacturaD.remove({})
@@ -45,6 +57,22 @@ router.patch('/facturasDescontadas/:id', async (req, res)=>{
     }
     catch(e){
         res.send(e)
+    }
+})
+
+
+
+router.get('/searchFd/:numero', async (req, res)=>{
+    invoiceNumber=req.params.numero
+
+    try{
+        const user = await FacturaD.find({"numero":invoiceNumber})
+        if(!user){throw new Error ('not found')}
+
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send(e.message)
     }
 })
 

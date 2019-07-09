@@ -11,6 +11,15 @@ router.get('/facturas', async (req, res)=>{
         res.status(500).send(e.message)
     }
 })
+router.get('/facturasVendidas', async (req, res)=>{
+    try{
+        const facturas = await Factura.find({"status":"Vendida"})
+        res.send(facturas)
+    }
+    catch(e){
+        res.status(500).send(e.message)
+    }
+})
 
 router.post('/facturas', async (req,res)=>{
     const factura = new Factura(req.body)
