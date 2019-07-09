@@ -144,7 +144,8 @@ app.post('/upload-txt', uploadTxt.single('uploadTxt'), (req, res)=>{
                 "invoiceDate":archivo[i].invoiceDate,
                 "dueDate":archivo[i].dueDate,
                 "moneda":archivo[i].moneda,
-                "aforo":archivo[i].aforo
+                "aforo":archivo[i].aforo,
+                "status":"Publicada"
             },
             json: true };
           
