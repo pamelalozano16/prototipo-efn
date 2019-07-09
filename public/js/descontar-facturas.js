@@ -167,10 +167,26 @@ apiGet().then((result)=>{
       body:JSON.stringify(result[i]),
       json:true
     })
-
-  }
+    fetch('/searchF/'+result[i].numero).then((factura)=>{
+      const id = factura[0]._id
+      fetch('/facturas/'+id, {
+        method: "PATCH",
+        headers: {          
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'accept-encoding': 'gzip, deflate'
+        },
+        body: JSON.stringify({
+          "status":"En Proceso"
+        })
+        }).then((resulto)=>{
+          console.log("RESULTADO PATCH:", resulto)
+        })
+    })
+  
 
 }).then(()=>{
+
   document.getElementById("tabla-resumen").style.visibility="hidden";
   document.getElementById("tabla-resumen").style.display="none";
   document.getElementById("confirmar").style.visibility="hidden";
