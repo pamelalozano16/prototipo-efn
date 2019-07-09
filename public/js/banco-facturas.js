@@ -123,7 +123,7 @@ fetch('/facturasDescontadas').then((response)=>{
  
                 var table = $('#facturas-descontadas');
                 var row, cell;
-                var titles = $('<th></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Moneda</th><th>Purchase Date</th><th>Aforo</th>'
+                var titles = $('<th></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Moneda</th><th>Trade Date</th><th>Aforo</th>'
                 +'<th>Dias de Gracia</th><th>Monto Neto de la Factura</th><th>Discount Period</th>><th>Purchase Price</th>');
                 table.append(titles)
              for(var i=0; i<rfcs.length; i++){
@@ -201,10 +201,11 @@ async function apiGet(){
       await fetch('/facturasDescontadas/'+facturaDes[0]._id, {
         method: "DELETE"
       }) 
-      document.location.reload(true)
+     
     }
     
     }
+    document.location.reload(true)
    } catch(e){
      console.log(e)
    }

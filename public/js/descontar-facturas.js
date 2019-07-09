@@ -136,7 +136,7 @@ fetch('/facturaTemp').then((response)=>{
  
                 var table = $('#tabla-resumen');
                 var row, cell;
-                var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>IVA</th><th>Purchase Date</th><th>Aforo</th>'
+                var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>IVA</th><th>Trade Date</th><th>Aforo</th>'
                 +'<th>Dias de Gracia</th><th>Monto Neto de la Factura</th><th>Discount Period</th><th>Discount Margin</th><th>Purchase Price</th><th>EFN fee</th>');
                 table.append(titles)
              for(var i=0; i<rfcs.length; i++){

@@ -3,6 +3,7 @@ const path = require('path')
 var request = require("request");
 const hbs = require('hbs');
 require('./db/mongoose')
+const j2c = require('./jsontocsv')
 const userRouter =require('./routers/user')
 const buyerRouter =require('./routers/buyer')
 const facturaRouter =require('./routers/facturaPublicada')
@@ -203,6 +204,7 @@ app.get('/banco-clientes',  (req, res) => {
     res.render('banco-clientes')
 })
 app.get('/banco-facturas',  (req, res) => {
+    j2c.jsontocsv()
     res.render('banco-facturas')
 })
 app.get('/descontar-facturas',  (req, res) => {
