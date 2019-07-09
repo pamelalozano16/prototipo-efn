@@ -199,6 +199,9 @@ app.get('/carga-facturas',  (req, res) => {
 app.get('/banco-comprador',  (req, res) => {
     res.render('banco-comprador')
 })
+app.get('/banco-clientes',  (req, res) => {
+    res.render('banco-clientes')
+})
 app.get('/banco-facturas',  (req, res) => {
     res.render('banco-facturas')
 })
@@ -207,6 +210,9 @@ app.get('/descontar-facturas',  (req, res) => {
 })
 app.get('/proveedor',  (req, res) => {
     res.render('logins/login-proveedor')
+})
+app.get('/banco',  (req, res) => {
+    res.render('logins/login-banco')
 })
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()

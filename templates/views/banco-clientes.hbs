@@ -1,22 +1,22 @@
 <html>
-    <head>
-
-
+<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="./css/register.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-        header{
+
+
+      <style>
+
+header{
     background-color: #183c56;
     z-index:1;
     height: 50px;
 }
  .main{
-       margin:50px 15%;
-       max-width:1300px;
-
+       margin: 50px auto;
+       padding-left:200px;
  }   
 
 body{
@@ -55,30 +55,15 @@ li a:hover {
     padding-top: 90px;
 
 }
-
-    td{
-        width:auto;
-        padding: 10px 10px;
-        font-size:14px;
-    }
-    #facturas-descontadas{
-        margin-top:50px;
-    }
-    .checkbox-td{
-            border: none;
-    padding-bottom: 0px;
-    padding-top: 20px;
-    padding-left: 20px;
-    }
 </style>
 
-    </head>
-    <body>
-                       {{>header}}
+</head>
+<body>
+       {{>header}}
 
        {{>sidebar}}
        <script>
-           document.getElementById("cs").href="/banco"
+             document.getElementById("cs").href="/banco"
            document.getElementById("inicio").href="/banco-clientes"
            document.getElementById("op-1").innerHTML="Clientes"
            document.getElementById("op-1").href="/banco-clientes"
@@ -87,14 +72,39 @@ li a:hover {
            document.getElementById("op-3").style.display="none"
        </script>
        <div class="main">
+<h1>Mis Clientes</h1>
+{{!-- <p id="user"></p> --}}
+<a href="http://localhost:3000/prueba">Link api</a>
+<br>
 
-    <h1>Sell Offers IACNA</h1>
-        <p id="result">No hay facturas descontadas por el momento.</p>
-        <table id="facturas-descontadas"></table>
-        <div style="margin-top:30px;"><button>Confirmar</button></div>
-
+<div class="row">
+ <form>
+      <div class="column" style="width:100px;">
+       ID: <p id="IDnum" style="display: inline;"></p>
+       </div>     
+       <div class="column">
+             <input placeholder="Name" id="name"><br>
        </div>
-       
-<script src="./js/banco-facturas.js"></script> 
-    </body>
+       <div class="column">
+             <input placeholder="RFC" id="age"><br>
+       </div>     
+            <br>
+                  </form>
+                  <button class="addBtn" onclick="add()">Add</button>
+                  <button id="save" onclick="save()">Save</button>
+                  <p id="error"></p>
+</div>
+<div class="w3-container">
+
+<table id ="myTable"></table>
+
+
+</div>
+       </div>
+
+           
+
+<script src="./js/banco-clientes.js"></script> 
+
+</body>
 </html>

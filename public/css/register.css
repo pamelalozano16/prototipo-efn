@@ -175,3 +175,9 @@ html{
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.profile-td{
+  border:none;
+}
+.profile{
+  background-color:#0b7f43;
+}
