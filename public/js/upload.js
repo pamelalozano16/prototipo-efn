@@ -1,6 +1,16 @@
 
 
 
+//FORMAT FUNCTIONS
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+  function roundNum(num){
+    let newNum = Math.round(num * 100) / 100
+     return newNum
+   }
+
+//END
 
   let rfcs = []
   let numeros =[]
@@ -34,8 +44,9 @@
                         sumaAforo+=(data[i].aforo)
                      }
                  } 
+                 sumaAforo=roundNum(sumaAforo)
                  document.getElementById("docs").innerHTML=rfcs.length
-                 document.getElementById("total").innerHTML=sumaAforo
+                 document.getElementById("total").innerHTML=formatNumber(sumaAforo)
                  var table = $('#tabla-facturas');
                  var row, cell;
                  var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th>Valor de la factura</th>');

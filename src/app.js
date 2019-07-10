@@ -216,6 +216,9 @@ app.get('/proveedor',  (req, res) => {
 app.get('/banco',  (req, res) => {
     res.render('logins/login-banco')
 })
+app.get('/admin',  (req, res) => {
+    res.render('logins/login-admin')
+})
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',

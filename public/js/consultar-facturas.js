@@ -48,7 +48,7 @@ fetch('/facturas').then((response)=>{
                    fechas=fechas.concat(data[i].invoiceDate)
                    fechasVen=fechasVen.concat(data[i].dueDate)
                    monedas=monedas.concat(data[i].moneda)
-                   aforos=aforos.concat(data[i].aforo)
+                   aforos=aforos.concat(roundNum(data[i].aforo))
                    status=status.concat(data[i].status)
                } 
 
@@ -60,7 +60,7 @@ fetch('/facturas').then((response)=>{
                 if(data[i].status!="Vendida"){
                     row = $('<tr />' );
                     table.append( row );
-                    cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
+                    cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
                     row.append( cell );
                 }
 
@@ -90,7 +90,7 @@ fetch('/facturasVendidas').then((response)=>{
              row = $('<tr />' );
              table.append( row );
              cell = $('<td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
-             '</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+data[i].aforo+'</td><td>'+data[i].status+'</td>')
+             '</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(roundNum(data[i].aforo))+'</td><td>'+data[i].status+'</td>')
              row.append( cell );
              totalVendido+=data[i].aforo;
             }
