@@ -115,7 +115,7 @@ fetch('/buyers').then((response)=>{
 
                var table = $('#compradores');
                var row, cell;
-               var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th><th>% Aforo</th>');
+               var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito (MXN)</th><th>% Aforo</th>');
                table.append(titles)
             for(var i=0; i<bnames.length; i++){
             row = $('<tr />' );

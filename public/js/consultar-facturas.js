@@ -1,4 +1,15 @@
 
+//FORMAT FUNCTIONS
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+  function roundNum(num){
+    let newNum = Math.round(num * 100) / 100
+     return newNum
+   }
+
+//END
+
 let rfcs = []
 let numeros =[]
 let folioFs=[]
@@ -28,7 +39,7 @@ fetch('/facturas').then((response)=>{
        if(data.error){
           
            return console.log(data.error)
-       } else{
+       } else {
               
                for(var i in data){
                    rfcs= rfcs.concat(data[i].rfc)
@@ -46,10 +57,13 @@ fetch('/facturas').then((response)=>{
                var titles = $('<th></th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
                table.append(titles)
             for(var i=0; i<rfcs.length; i++){
-            row = $('<tr />' );
-            table.append( row );
-            cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
-            row.append( cell );
+                if(data[i].status!="Vendida"){
+                    row = $('<tr />' );
+                    table.append( row );
+                    cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td><td>'+status[i]+'</td>')
+                    row.append( cell );
+                }
+
            }
 
            // document.getElementById("user").innerHTML = JSON.stringify(data);
@@ -57,6 +71,37 @@ fetch('/facturas').then((response)=>{
       
    })
 })
+
+fetch('/facturasVendidas').then((response)=>{
+    response.json().then((data)=>{
+        if(data.error){
+           
+            return console.log(data.error)
+        } else if(data.length>0){
+          document.getElementById("res").style.visibility="hidden";
+          document.getElementById("res").style.display="none";
+  
+                var table = $('#facturas-vendidas');
+                var row, cell;
+                var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+                table.append(titles)
+                var totalVendido=0;
+             for(var i=0; i<data.length; i++){
+             row = $('<tr />' );
+             table.append( row );
+             cell = $('<td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
+             '</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+data[i].aforo+'</td><td>'+data[i].status+'</td>')
+             row.append( cell );
+             totalVendido+=data[i].aforo;
+            }
+            totalVendido=roundNum(totalVendido)
+
+            document.getElementById("total-vendido").innerHTML=formatNumber(totalVendido);
+            // document.getElementById("user").innerHTML = JSON.stringify(data);
+        }
+       
+    })
+  })
 
 async function apiGet(){
     try{

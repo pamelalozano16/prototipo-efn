@@ -229,7 +229,7 @@ app.get('/consultar-facturas',  (req, res) => {
  request(options, function (error, response, body) {
    if (error) throw new Error(error);
  });
-
+    j2c.jsontocsv()
    res.render('consultar-facturas')
 })
 

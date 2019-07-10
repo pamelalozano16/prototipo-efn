@@ -47,7 +47,7 @@ li a:hover {
 
 .sidebar{
       float:left;
-      height:130%;
+      height:170%;
       width: 200px;
       position:absolute;
       background-color:#292c35;
@@ -89,6 +89,14 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
     <table id="tabla-facturas"></table>
 </div>
 
+
+<div style="margin-top:100px;">
+<h1>Facturas Vendidas</h1>
+<p id="res">No hay facturas vendidas</p>
+<table id="facturas-vendidas" style="margin-top:50px;"></table>
+<p style="font-size:15px; font-weight:600;">Total Vendido: $<span id="total-vendido" ></span> MXN</p>
+<button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
+</div>
 </div>
         <script>
 
