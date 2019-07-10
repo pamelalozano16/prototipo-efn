@@ -132,7 +132,7 @@ function descontar(){
     let checked=[]    
     apiGet().then((response)=>{ 
         for(var i in response){
-           if (document.getElementById("cb-"+i).checked==true){
+           if (document.getElementById("cb-"+i)!=null && document.getElementById("cb-"+i).checked==true){
                checked=checked.concat(document.getElementById("cb-"+i).value)
            }
         }
