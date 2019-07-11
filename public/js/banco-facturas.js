@@ -150,13 +150,15 @@ fetch('/facturasDescontadas').then((response)=>{
 
               var table = $('#facturas-vendidas');
               var row, cell;
-              var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+              var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>Status</th>');
               table.append(titles)
            for(var i=0; i<data.length; i++){
            row = $('<tr />' );
            table.append( row );
-           cell = $('<td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
-           '</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+data[i].aforo+'</td><td>'+data[i].status+'</td>')
+           cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
+           '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
+           '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
+           '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td>'+data[i].status+'</td>')
            row.append( cell );
           }
 
@@ -198,6 +200,27 @@ async function apiGet(){
       })
       const facturaDesJSON = await fetch('/searchFd/'+num)
       const facturaDes = await facturaDesJSON.json()
+      fetch('/facturas/'+factura[0]._id,{
+        method: "PATCH",
+        headers: {          
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'accept-encoding': 'gzip, deflate'
+        },
+        body: JSON.stringify({
+          "aforoP":facturaDes[0].aforoP,
+          "purchasePrice":facturaDes[0].purchasePrice,
+          "advanceRate":facturaDes[0].advanceRate,
+          "bufferDays":facturaDes[0].bufferDays,
+          "discountMargin":facturaDes[0].discountMargin,
+          "discountPeriod":facturaDes[0].discountPeriod,
+          "iva":facturaDes[0].iva,
+          "libor":facturaDes[0].libor,
+          "name":facturaDes[0].name,
+          "purchaseDate":facturaDes[0].purchaseDate
+        }),
+        json:true
+      })
       await fetch('/facturasDescontadas/'+facturaDes[0]._id, {
         method: "DELETE"
       }) 

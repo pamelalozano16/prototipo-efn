@@ -29,7 +29,9 @@ const FacturaD = mongoose.model('facturasDescontadas', {
         type: String
     },
     aforo:
-   { type:Number},
+   { type:Number,
+    default:100
+},
     iva:{
         type:Number
     },

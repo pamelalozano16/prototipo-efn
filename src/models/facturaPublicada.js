@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 
 
 const Factura = mongoose.model('facturasPublicadas', {
+    name:{
+        type:String
+    },
     rfc: {
         type: String,
         validate(value){
@@ -31,10 +34,39 @@ const Factura = mongoose.model('facturasPublicadas', {
        type: String,
        default: "Publicada"
    },
-   aforoP:{
-       type:Number,
-       default:100
-   }
+   iva:{
+    type:Number
+},
+extras:{
+    type:Number
+},
+purchaseDate:{
+    type: Date
+},
+aforoP:{
+    type:Number
+},
+advanceRate:{
+    type:Number
+},
+bufferDays:{
+    type:Number
+},
+discountPeriod:{
+    type:Number
+},
+libor:{
+    type:Number
+},
+creditSpread:{
+    type:Number
+},
+discountMargin:{
+    type:Number
+},
+purchasePrice:{
+    type:Number
+}
 })
 
 // Factura.get('/facturas', async (req, res)=>{
