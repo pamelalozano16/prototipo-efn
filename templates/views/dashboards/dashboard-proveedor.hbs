@@ -1,0 +1,82 @@
+<html>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+header{
+    background-color: #183c56;
+    z-index:1;
+        height: 50px;
+}
+ .main{
+       margin: 50px auto;
+       padding-left:200px;
+       max-width:1600px;
+ }   
+
+body{
+            max-width:none;
+            margin:0;
+      }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+   border-bottom: solid 1px #b5b3b3;
+    padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar{
+      float:left;
+      height:170%;
+      width: 200px;
+      position:absolute;
+      background-color:#292c35;
+      z-index:0;
+     color: white;
+    padding-top: 90px;
+
+}
+    td{
+        width:auto;
+        padding: 10px 10px;
+        font-size:14px;
+    }
+    .cboxes{
+        display:none;
+    }
+    .cboxes-title{
+        display:none;
+    }
+</style>
+    </head>
+
+    <body>
+{{>header}}
+       {{>sidebarproveedor}}
+
+<div class="main">
+  <h1>
+      Dashboard
+  </h1>
+</div>
+
+    </body>
+</html>

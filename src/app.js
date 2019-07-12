@@ -227,6 +227,12 @@ app.get('/descontar-facturas',  (req, res) => {
 app.get('/proveedor',  (req, res) => {
     res.render('logins/login-proveedor')
 })
+app.get('/inicio-proveedor',  (req, res) => {
+    res.render('dashboards/dashboard-proveedor')
+})
+app.get('/inicio-banco',  (req, res) => {
+    res.render('dashboards/inicio-banco')
+})
 app.get('/banco',  (req, res) => {
     res.render('logins/login-banco')
 })

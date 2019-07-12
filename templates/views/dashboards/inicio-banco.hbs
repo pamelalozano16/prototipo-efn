@@ -1,22 +1,21 @@
 <html>
     <head>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="./css/register.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-        header{
+
+header{
     background-color: #183c56;
     z-index:1;
-    height: 50px;
+        height: 50px;
 }
  .main{
-       margin:50px 15%;
-       max-width:1300px;
-
+       margin: 50px auto;
+       padding-left:200px;
+       max-width:1600px;
  }   
 
 body{
@@ -46,7 +45,7 @@ li a:hover {
 
 .sidebar{
       float:left;
-      height:120%;
+      height:170%;
       width: 200px;
       position:absolute;
       background-color:#292c35;
@@ -55,30 +54,25 @@ li a:hover {
     padding-top: 90px;
 
 }
-
     td{
         width:auto;
         padding: 10px 10px;
         font-size:14px;
     }
-    #facturas-descontadas{
-        margin-top:50px;
+    .cboxes{
+        display:none;
     }
-    .checkbox-td{
-            border: none;
-    padding-bottom: 0px;
-    padding-top: 20px;
-    padding-left: 20px;
+    .cboxes-title{
+        display:none;
     }
 </style>
-
     </head>
-    <body>
-                       {{>header}}
 
+    <body>
+{{>header}}
        {{>sidebar}}
-       <script>
-           document.getElementById("cs").href="/banco"
+              <script>
+             document.getElementById("cs").href="/banco"
            document.getElementById("inicio").href="/inicio-banco"
            document.getElementById("op-1").innerHTML="Clientes"
            document.getElementById("op-1").href="/banco-clientes"
@@ -87,30 +81,12 @@ li a:hover {
            document.getElementById("op-3").innerHTML="Documentos Comprados"
          document.getElementById("op-3").href="/banco-facturas#facturas-vendidas"
        </script>
-       <div class="main">
 
-    <h1>Sell Offers IACNA</h1>
-        <p id="result">No hay facturas descontadas por el momento.</p>
-        <table id="facturas-descontadas"></table>
-        <div style="margin-top:30px;"><button onclick="venderFacturas()">Confirmar</button></div>
+<div class="main">
+  <h1>
+      Dashboard
+  </h1>
+</div>
 
-      
-    <div style="margin-top:70px;">
-       
-    <h1>Documentos Comprados IACNA</h1>
-        <p id="result2">No hay facturas vendidas.</p>
-        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="facturas-vendidas" style="margin-top:50px;"></table>
-        </div>
-
-    <button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
-           
-           </div>
-       
-    </div>
-
-
-
-<script src="./js/banco-facturas.js"></script> 
     </body>
 </html>
