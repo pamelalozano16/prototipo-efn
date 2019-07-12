@@ -9,6 +9,7 @@ function rfc(){
 }
 
 async function buscar(){
+
 const myrfc=rfc()
     if(myrfc!=""){
         console.log(myrfc)
@@ -84,4 +85,52 @@ if(document.getElementById("fechaVen").value){
 }
 
 
+}
+
+async function buscarVendidas(){
+    var date=document.getElementById("fechaVen").value
+    date=new Date(date)
+       const day = date.getDate()+1
+       const month = date.getMonth()+1
+       const year = date.getFullYear()
+    console.log( date.getDate()+1, date.getMonth()+1, date.getFullYear())
+   
+   
+    const facturasJSON = await fetch('/facturasVendidas')
+    const facturas = await facturasJSON.json()
+    var numeros=[]
+    for(var i in facturas){
+        const searchDate = new Date(facturas[i].dueDate)
+       // console.log(searchDate.getDate(), searchDate.getMonth()+1, searchDate.getFullYear())
+        if((searchDate.getDate()==day)&&(searchDate.getMonth()+1==month)&&(searchDate.getFullYear()==year))
+        {
+           numeros.push(facturas[i].numero)
+        }
+       
+    }
+    console.log(numeros)
+   
+    var table = $('#tabla-busqueda');
+    var row, cell;
+    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>EFN Fee</th><th>Status</th>');
+    table.append(titles)
+    for (var i in numeros){
+       const dJson= await fetch('/searchF/'+numeros[i])
+       const data = await dJson.json()
+      if(data.length>0){
+   
+    for(var i=0; i<data.length; i++){
+            row = $('<tr />' );
+            table.append( row );
+            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
+            '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
+            '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
+            '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
+            row.append( cell );
+  
+        
+   
+   }
+    }
+    }
 }

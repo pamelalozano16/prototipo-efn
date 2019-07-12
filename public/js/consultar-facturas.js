@@ -75,39 +75,42 @@ async function apiGetProveedores(){
      
   }
 
-verTabla()
 
-fetch('/facturasVendidas').then((response)=>{
-    response.json().then((data)=>{
-        if(data.error){
-           
-            return console.log(data.error)
-        } else if(data.length>0){
-          document.getElementById("res").style.visibility="hidden";
-          document.getElementById("res").style.display="none";
-  
-                var table = $('#facturas-vendidas');
-                var row, cell;
-                var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>EFN Fee</th><th>Status</th>');
-                table.append(titles)
-                var totalVendido=0;
-             for(var i=0; i<data.length; i++){
-             row = $('<tr />' );
-             table.append( row );
-             cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
-             '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
-             '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
-             '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
-             row.append( cell );
-             totalVendido+=data[i].purchasePrice
+
+function verVendidas(){
+    fetch('/facturasVendidas').then((response)=>{
+        response.json().then((data)=>{
+            if(data.error){
+               
+                return console.log(data.error)
+            } else if(data.length>0){
+              document.getElementById("res").style.visibility="hidden";
+              document.getElementById("res").style.display="none";
+      
+                    var table = $('#facturas-vendidas');
+                    var row, cell;
+                    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>EFN Fee</th><th>Status</th>');
+                    table.append(titles)
+                    var totalVendido=0;
+                 for(var i=0; i<data.length; i++){
+                 row = $('<tr />' );
+                 table.append( row );
+                 cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
+                 '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
+                 '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
+                 '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
+                 row.append( cell );
+                 totalVendido+=data[i].purchasePrice
+                }
+                totalVendido=roundNum(totalVendido)
+                document.getElementById("total-vendido").innerHTML=formatNumber(totalVendido);
+                // document.getElementById("user").innerHTML = JSON.stringify(data);
             }
-            totalVendido=roundNum(totalVendido)
-            document.getElementById("total-vendido").innerHTML=formatNumber(totalVendido);
-            // document.getElementById("user").innerHTML = JSON.stringify(data);
-        }
-       
-    })
-  })
+           
+        })
+      })
+    
+}
 
 async function apiGet(){
     try{

@@ -224,6 +224,9 @@ app.get('/banco-facturas',  (req, res) => {
 app.get('/descontar-facturas',  (req, res) => {
     res.render('descontar-facturas')
 })
+app.get('/cobranza',  (req, res) => {
+    res.render('cobranza')
+})
 app.get('/proveedor',  (req, res) => {
     res.render('logins/login-proveedor')
 })

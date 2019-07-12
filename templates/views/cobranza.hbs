@@ -1,7 +1,5 @@
-<!DOCTYPE html>
 <html>
-<head>
-
+    <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -68,73 +66,45 @@ li a:hover {
         display:none;
     }
 </style>
-    {{!-- <script src="./js/libor.js"></script> --}}
-</head>
-<body id="body">
-        {{>header}}
+    </head>
 
+    <body>
+{{>header}}
        {{>sidebarproveedor}}
-<div class="main" id="main">
-<h1>Consultar Facturas IANCA</h1>
 
-<div style="margin-top:30px">
-Spread Points: <p id="spreadPoints" style="display:inline;"></p><br>
-Libor: <p id="libor" style="display:inline;">2.35</p>% USD
-</div>
+<div class="main">
+  <h1>
+Cobranza
+</h1>
 <div style="margin-top:50px;">
     <h3>Buscar:</h3>
-<form>
-
-<div id="names-form" style="float:left;"></div>
-<input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
-<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
-<span style="float:left; margin-left:30px; display:none;">Fecha Máxima de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; display:none;" id="fechaMaxVen">
-</form>
+    <form>
+        <span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+    </form>
+    <div style="margin-bottom:50px; padding-top: 50px;">
+    <button onclick="buscarVendidas()">Buscar</button>
 </div>
-<div style="margin-bottom:50px; padding-top: 50px;">
-    <button style="background-color:#0b7f43; " onclick="buscar()">Buscar</button>
 </div>
-<div style="margin-top:30px;">
-    <button style="float:left; " onclick="window.location.href='/carga-facturas'">Cargar</button>
-</div>
-
- 
-<div style="margin-top:150px;">
-
-    <table id="tabla-facturas"></table>
-    <table id="tabla-busqueda"></table>
-    <p id="res2" style="display:none; padding-top:100px; ">No hay resultados de su busqueda. Favor de refrescar la página.</p>
-</div>
-
-
 <div style="margin-top:100px;">
-<h1>Facturas Vendidas</h1>
 <p id="res">No hay facturas vendidas</p>
+
+       <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
+        <table id="tabla-busqueda" style="margin-top:50px;"></table>
+        </div>
+
        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
         <table id="facturas-vendidas" style="margin-top:50px;"></table>
         </div>
 <p style="font-size:15px; font-weight:600;">Total Vendido: $<span id="total-vendido" ></span> MXN</p>
 <button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
 </div>
+
 </div>
-        <script>
-
-            window.onload = function() {
-                
-            fetch('/facturaTemp', {
-        method: "DELETE"
-    })}
-
-        </script>
-
-
     <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
     <script>
-        verTabla()
         verVendidas()
     </script>
-    <script src="./js/buscar.js"></script> 
-
-</body>
+    <script src="./js/buscar.js"></script> >
+    </body>
 </html>
