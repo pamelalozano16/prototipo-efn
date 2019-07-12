@@ -74,7 +74,7 @@ module.exports = {
             value:'advanceRate'
           },
           {
-            label:'Días de Gracia',
+            label:'Dias de Gracia',
             value:'bufferDays'
           },
           {
@@ -84,6 +84,10 @@ module.exports = {
           {
             label:'Discount Period',
             value:'discountPeriod'
+          },
+          {
+            label:'Fecha maxima de vencimiento',
+            value:'matuDate'
           },
           {
             label:'IVA',
