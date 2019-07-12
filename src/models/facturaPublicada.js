@@ -70,6 +70,9 @@ purchasePrice:{
 efnFee:{
     type:Number,
     default:0
+},
+matuDate:{
+    type:Date
 }
 })
 

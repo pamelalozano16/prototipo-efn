@@ -70,6 +70,9 @@ purchasePrice:{
 },
 efnFee:{
     type:Number
+},
+matuDate:{
+    type:Date
 }
 })
 module.exports = Factura

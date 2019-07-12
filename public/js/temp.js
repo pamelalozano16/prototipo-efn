@@ -44,15 +44,15 @@
      monthsDays[12]=31
  
  
-     function matDate(day, month, gracia){
+     function matDate(day, month, year, gracia){
          if(day+gracia>monthsDays[month]){
            day=(day+gracia)-monthsDays[month]
            month++;
-           var arr=[day, month]
+           var arr=[day, month, year]
            return arr
          } else{
            day=day+gracia
-            var arr=[day, month]
+            var arr=[day, month, year]
            return arr
          }
        }
@@ -121,6 +121,7 @@ function createData(){
             const purchaseDate=curday('/',0)
             const aforoo=data[i].aforo
             const dueDay=(new Date(data[i].dueDate).getDate())
+            const dueYear=(new Date(data[i].dueDate).getFullYear())
             const dueMonth=(new Date(data[i].dueDate).getMonth()+1)
             const _id=data[i]._id
             const theRFC = data[i].rfc
@@ -137,14 +138,18 @@ function createData(){
                   const advanceRate=roundNum(aforoo*(aforoP/100))
                   const pDay=(new Date (purchaseDate)).getDate()
                   const pMonth=(new Date (purchaseDate)).getMonth()+1
-                  const matuDate= matDate(dueDay, dueMonth, bufferDays)
+                  const matuDate= matDate(dueDay, dueMonth, dueYear, bufferDays)
                   const discountPeriod= discPeriod(matuDate[0], matuDate[1], pDay, pMonth)
                   const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
                   const creditSpread=document.getElementById("spreadPoints").innerHTML
                   const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
                   const efnFee=roundNum(advanceRate*(libor+creditSpread+6)*(discountPeriod/360))
                   const purchasePrice=roundNum(advanceRate-discountMargin)
-  
+                var maxDate = new Date()
+                maxDate.setDate(matuDate[0])
+                maxDate.setMonth(matuDate[1]-1)
+                maxDate.setFullYear(matuDate[2])
+
             fetch('/facturaTemp/'+_id, {
               method: "PATCH",
               headers: {          
@@ -156,6 +161,7 @@ function createData(){
                  "iva":newIva,
                 "status": "En proceso",
                   purchaseDate,
+                  matuDate:maxDate,
                   aforoP,
                   bufferDays,
                   advanceRate,

@@ -137,13 +137,13 @@ fetch('/facturaTemp').then((response)=>{
                 var table = $('#tabla-resumen');
                 var row, cell;
                 var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>IVA</th><th>Trade Date</th><th>Aforo</th>'
-                +'<th>Dias de Gracia</th><th>Monto Neto de la Factura</th><th>Discount Period</th><th>Discount Margin</th><th>Purchase Price</th><th>EFN fee</th>');
+                +'<th>Dias de Gracia</th><th>Monto Neto de la Factura</th><th>Discount Period</th><th>Fecha máxima de vencimiento</th><th>Discount Margin</th><th>Purchase Price</th><th>EFN fee</th>');
                 table.append(titles)
              for(var i=0; i<rfcs.length; i++){
              row = $('<tr />' );
              table.append( row );
              cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+formatDate(fechas[i])+'</td><td>'+formatDate(fechasVen[i])+'</td><td>'+monedas[i]+'</td><td> $'+formatNumber(aforos[i])+'</td><td> $'+formatNumber(data[i].iva)+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+data[i].aforoP+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+
-             '</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].efnFee)+'</td>')
+             '</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen"> '+formatDate(data[i].matuDate)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].efnFee)+'</td>')
              row.append( cell );
             }
 

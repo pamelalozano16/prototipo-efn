@@ -67,6 +67,9 @@ const FacturaD = mongoose.model('facturasDescontadas', {
     },
     efnFee:{
         type:Number
+    },
+    matuDate:{
+        type:Date
     }
 })
 
