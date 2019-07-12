@@ -33,6 +33,10 @@ module.exports = {
         const data = await res.json()
 
         const fields = [
+          {
+            label:'Nombre del Comprador',
+            value:'name'
+          },
             {
                 label: 'RFC',
                 value: 'rfc'
@@ -60,6 +64,42 @@ module.exports = {
           {
             label: 'Valor de la Factura',
             value: 'aforo'
+          },
+          {
+            label: 'Valor de la Factura',
+            value: 'aforo'
+          },
+          {
+            label: 'Advance Rate',
+            value:'advanceRate'
+          },
+          {
+            label:'Días de Gracia',
+            value:'bufferDays'
+          },
+          {
+            label:'Discount Margin',
+            value:'discountMargin'
+          },
+          {
+            label:'Discount Period',
+            value:'discountPeriod'
+          },
+          {
+            label:'IVA',
+            value:'iva'
+          },
+          {
+            label:'Libor',
+            value:'libor'
+          },
+          {
+            label:'Trade Date',
+            value:'purchaseDate'
+          },
+          {
+            label:'Purchase Price',
+            value:'purchasePrice'
           }
 
         ];
