@@ -129,3 +129,26 @@ fetch('/buyers').then((response)=>{
       
    })
 })
+
+async function compradoresPendientes(){
+
+    const buyersJSON = await fetch('/buyers')
+    const buyers = await buyersJSON.json()
+    console.log(buyers)
+    var table = $('#compradores-pendientes');
+    var row, cell;
+    var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito (MXN)</th><th>% Aforo</th>');
+    table.append(titles)
+    for (var i in buyers){
+        if(buyers[i].bufferDays== undefined||buyers[i].lineaDeCredito==undefined||buyers[i].aforoP==undefined){
+          document.getElementById("resultado").style.display="none";
+       row = $('<tr />' );
+       table.append( row );
+       cell = $('<td class="idnums">'+buyers[i].IDnum+'</td><td>'+buyers[i].name+'</td><td>'+buyers[i].age+'</td><td style="background-color:firebrick">'+buyers[i].bufferDays+'</td><td style="background-color:firebrick">'+buyers[i].lineaDeCredito+'</td><td style="background-color:firebrick">'+buyers[i].aforoP+'</td>')
+       row.append( cell );
+      }
+        }
+    }
+
+
+compradoresPendientes()

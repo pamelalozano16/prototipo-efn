@@ -143,7 +143,7 @@ fetch('/facturaTemp').then((response)=>{
              row = $('<tr />' );
              table.append( row );
              cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+formatDate(fechas[i])+'</td><td>'+formatDate(fechasVen[i])+'</td><td>'+monedas[i]+'</td><td> $'+formatNumber(aforos[i])+'</td><td> $'+formatNumber(data[i].iva)+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+data[i].aforoP+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+
-             '</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].purchasePrice)+'</td>')
+             '</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].efnFee)+'</td>')
              row.append( cell );
             }
 

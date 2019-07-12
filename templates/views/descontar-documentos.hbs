@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 
@@ -7,8 +6,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="./css/register.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
+<style>
+    
 header{
     background-color: #183c56;
     z-index:1;
@@ -61,23 +61,19 @@ li a:hover {
         padding: 10px 10px;
         font-size:14px;
     }
-    .cboxes{
-        display:none;
-    }
-    .cboxes-title{
-        display:none;
-    }
 </style>
-    {{!-- <script src="./js/libor.js"></script> --}}
+
 </head>
-<body id="body">
-        {{>header}}
+<body>
 
-       {{>sidebarproveedor}}
-<div class="main" id="main">
-<h1>Consultar Facturas IANCA</h1>
+{{>header}}
+ {{>sidebarproveedor}}
 
-<div style="margin-top:30px">
+<div class="main">
+<h1>Descontar Documentos</h1>
+
+<div>
+    <div style="margin-top:30px">
 Spread Points: <p id="spreadPoints" style="display:inline;"></p><br>
 Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 </div>
@@ -86,51 +82,35 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 <form>
 
 <div id="names-form" style="float:left;"></div>
-<input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
-<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
-<span style="float:left; margin-left:30px;">Fecha Máxima de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaMaxVen">
+<input placeholder="RFC" id="rfc" style="float:left; margin-left:30px; ">
+<span style="float:left; margin-left:30px; display:none;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; display:none;" id="fechaVen">
+<span style="float:left; margin-left:30px; display:none;">Fecha Máxima de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; display:none;" id="fechaMaxVen">
 </form>
 </div>
-<div style="margin-bottom:50px; padding-top: 50px;">
-    <button style="background-color:#0b7f43; " onclick="buscar()">Buscar</button>
-</div>
-<div style="margin-top:30px;">
-    <button style="float:left; " onclick="window.location.href='/carga-facturas'">Cargar</button>
+
+<div style="margin-top:100px;">
+  <button style="float:left; background-color:#0b7f43;" onclick="buscar()">Buscar</button>
+    <button style="float:right; "  onclick="window.location.href='/descontar-facturas'">Descontar</button>
 </div>
 
  
-<div style="margin-top:150px;">
+<div style="margin-top:200px;">
 
     <table id="tabla-facturas"></table>
     <table id="tabla-busqueda"></table>
     <p id="res2" style="display:none; padding-top:100px; ">No hay resultados de su busqueda. Favor de refrescar la página.</p>
 </div>
-
-
-<div style="margin-top:100px;">
-<h1>Facturas Vendidas</h1>
-<p id="res">No hay facturas vendidas</p>
-       <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="facturas-vendidas" style="margin-top:50px;"></table>
-        </div>
-<p style="font-size:15px; font-weight:600;">Total Vendido: $<span id="total-vendido" ></span> MXN</p>
-<button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
 </div>
 </div>
-        <script>
-
-            window.onload = function() {
+<script>
+                window.onload = function() {
                 
             fetch('/facturaTemp', {
         method: "DELETE"
     })}
-
-        </script>
-
-
+</script>
     <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
     <script src="./js/buscar.js"></script> 
-
 </body>
 </html>

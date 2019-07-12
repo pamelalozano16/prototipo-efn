@@ -66,6 +66,10 @@ discountMargin:{
 },
 purchasePrice:{
     type:Number
+},
+efnFee:{
+    type:Number,
+    default:0
 }
 })
 

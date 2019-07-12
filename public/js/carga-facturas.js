@@ -39,6 +39,7 @@ function mostrarIndividual(){
 }
 function individual(){
     //FUNCTION
+    const name = document.getElementById("name").value
     const rfc = document.getElementById("rfc").value
     const numero = document.getElementById("numero").value
     const folioFiscal =document.getElementById("folioFiscal").value
@@ -57,6 +58,7 @@ function individual(){
                     'accept-encoding': 'gzip, deflate'
                   },
                 body: JSON.stringify({
+                    name,
                     rfc,
                     numero,
                     folioFiscal,

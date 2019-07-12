@@ -55,13 +55,13 @@ async function apiGetProveedores(){
      
                     var table = $('#tabla-facturas');
                     var row, cell;
-                    var titles = $('<th></th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+                    var titles = $('<th class="cboxes-title"></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
                     table.append(titles)
                  for(var i=0; i<rfcs.length; i++){
                      if(data[i].status!="Vendida"){
                          row = $('<tr />' );
                          table.append( row );
-                         cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
+                         cell = $('<td class="cboxes"><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
                          row.append( cell );
                      }
      
@@ -88,18 +88,21 @@ fetch('/facturasVendidas').then((response)=>{
   
                 var table = $('#facturas-vendidas');
                 var row, cell;
-                var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>Status</th>');
+                var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Advance Rate</th><th>Dias de Gracia</th><th>Discount Margin</th><th>Discount Period</th><th>IVA</th><th>Libor</th><th>Purchase Date</th><th>Purchase Price</th><th>EFN Fee</th><th>Status</th>');
                 table.append(titles)
+                var totalVendido=0;
              for(var i=0; i<data.length; i++){
              row = $('<tr />' );
              table.append( row );
              cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
              '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
              '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
-             '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td>'+data[i].status+'</td>')
+             '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
              row.append( cell );
+             totalVendido+=data[i].purchasePrice
             }
-  
+            totalVendido=roundNum(totalVendido)
+            document.getElementById("total-vendido").innerHTML=formatNumber(totalVendido);
             // document.getElementById("user").innerHTML = JSON.stringify(data);
         }
        
@@ -137,8 +140,14 @@ function descontar(){
         for(var i in response){
            if (document.getElementById("cb-"+i)!=null && document.getElementById("cb-"+i).checked==true){
                checked=checked.concat(document.getElementById("cb-"+i).value)
+               console.log('VALOR: '+document.getElementById("cb-"+i).value)
+           }
+           if(document.getElementById("cbs-"+i)!=null && document.getElementById("cbs-"+i).checked==true){
+            checked=checked.concat(document.getElementById("cbs-"+i).value)
+            console.log('VALOR: '+document.getElementById("cbs-"+i).value)
            }
         }
+        console.log('CHECKED: '+checked)
         for(var n in checked){
             fetch('/searchF/'+checked[n]).then((result)=>{
                 result.json().then((data)=>{

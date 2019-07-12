@@ -19,12 +19,12 @@ const myrfc=rfc()
         document.getElementById("tabla-facturas").style.display="none";
         var table = $('#tabla-busqueda');
         var row, cell;
-        var titles = $('<th></th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+        var titles = $('<th class="cboxes-title"></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
         table.append(titles)
      for(var i=0; i<data.length; i++){
              row = $('<tr />' );
              table.append( row );
-             cell = $('<td><form><input type="checkbox" id="cb-'+i+'" value="'+data[i].numero+'" onchange="descontar()"></form></td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
+             cell = $('<td class="cboxes"><form><input type="checkbox" id="cbs-'+i+'" value="'+data[i].numero+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
              row.append( cell );
          
 

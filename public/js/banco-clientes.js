@@ -26,12 +26,12 @@ fetch('/prueba').then((response)=>{
 
                var table = $('#myTable');
                var row, cell;
-               var titles = $('<th></th><th></th><th></th><th>Names</th><th>RFC</th><th>Tasa Base</th><th>Spread Points</th><th>Email</th>');
+               var titles = $('<th></th><th>Names</th><th>RFC</th><th>Tasa Base</th><th>Spread Points</th><th>Email</th>');
                table.append(titles)
             for(var i=0; i<names.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td class="profile-td"><button class="profile" id="profile-'+(i)+'">Ver Perfil</button></td><td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Edit</button></td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            cell = $('<td class="profile-td"><button class="profile" id="profile-'+(i)+'">Ver Perfil</button></td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
             row.append( cell );
            }
 

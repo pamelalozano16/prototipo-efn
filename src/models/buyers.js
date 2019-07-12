@@ -23,16 +23,13 @@ const buyerSchema = new mongoose.Schema({
         type: String
     }, 
     lineaDeCredito:{
-        type: Number,
-        default:1000000
+        type: Number
     },
     bufferDays:{
-        type: Number,
-        default:9
+        type: Number
     },
     aforoP:{
-        type:Number,
-        default:100
+        type:Number
     }
 })
 

@@ -197,6 +197,20 @@ app.get('/p',  (req, res) => {
 app.get('/carga-facturas',  (req, res) => {
     res.render('carga-facturas')
 })
+app.get('/descontar-documentos',  (req, res) => {
+    var options = { method: 'DELETE',
+    url: 'https://prototipo-efn.herokuapp.com/facturaTemp',
+    headers: 
+     { 'cache-control': 'no-cache',
+       Connection: 'keep-alive',
+       'accept-encoding': 'gzip, deflate',
+       Accept: '*/*',} };
+  
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+  });
+    res.render('descontar-documentos')
+})
 app.get('/banco-comprador',  (req, res) => {
     res.render('banco-comprador')
 })

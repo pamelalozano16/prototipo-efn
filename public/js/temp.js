@@ -142,6 +142,7 @@ function createData(){
                   const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
                   const creditSpread=document.getElementById("spreadPoints").innerHTML
                   const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
+                  const efnFee=roundNum(advanceRate*(libor+creditSpread+6)*(discountPeriod/360))
                   const purchasePrice=roundNum(advanceRate-discountMargin)
   
             fetch('/facturaTemp/'+_id, {
@@ -163,7 +164,8 @@ function createData(){
                   libor,
                   discountMargin,
                   purchasePrice,
-                  name
+                  name,
+                  efnFee
               })
           }).catch(function(error) {
               console.log('Hubo un problema con la petición Fetch:' + error);

@@ -67,6 +67,9 @@ discountMargin:{
 },
 purchasePrice:{
     type:Number
+},
+efnFee:{
+    type:Number
 }
 })
 module.exports = Factura
