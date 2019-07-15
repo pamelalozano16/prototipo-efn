@@ -61,6 +61,10 @@ li a:hover {
         padding: 10px 10px;
         font-size:14px;
     }
+    #cb-todos{
+        border:none;
+        text-align: center;
+    }
 </style>
 
 </head>
@@ -83,13 +87,13 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 
 <div id="names-form" style="float:left;"></div>
 <input placeholder="RFC" id="rfc" style="float:left; margin-left:30px; ">
-<span style="float:left; margin-left:30px; display:none;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; display:none;" id="fechaVen">
-<span style="float:left; margin-left:30px; display:none;">Fecha Máxima de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; display:none;" id="fechaMaxVen">
+<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+
 </form>
 </div>
 
 <div style="margin-top:100px;">
-  <button style="float:left; background-color:#0b7f43;" onclick="buscar()">Buscar</button>
+  <button style="float:left; background-color:#0b7f43;" onclick="buscarPublicadas()">Buscar</button>
     <button style="float:right; "  onclick="window.location.href='/descontar-facturas'">Descontar</button>
 </div>
 
@@ -112,7 +116,7 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
     <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
     <script>
-        verTabla()
+        verPublicadas()
     </script>
     <script src="./js/buscar.js"></script> 
 </body>

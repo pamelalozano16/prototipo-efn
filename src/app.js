@@ -4,6 +4,7 @@ var request = require("request");
 const hbs = require('hbs');
 require('./db/mongoose')
 const j2c = require('./jsontocsv')
+const j2cF = require('./facturastocsv')
 const userRouter =require('./routers/user')
 const buyerRouter =require('./routers/buyer')
 const facturaRouter =require('./routers/facturaPublicada')
@@ -255,7 +256,7 @@ app.get('/consultar-facturas',  (req, res) => {
  request(options, function (error, response, body) {
    if (error) throw new Error(error);
  });
-    j2c.jsontocsv()
+    j2cF.jsontocsv()
    res.render('consultar-facturas')
 })
 

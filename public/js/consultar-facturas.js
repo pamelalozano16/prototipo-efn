@@ -58,10 +58,55 @@ async function apiGetProveedores(){
                     var titles = $('<th class="cboxes-title"></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
                     table.append(titles)
                  for(var i=0; i<rfcs.length; i++){
-                     if(data[i].status!="Vendida"){
+
                          row = $('<tr />' );
                          table.append( row );
                          cell = $('<td class="cboxes"><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
+                         row.append( cell );
+                     
+     
+                }
+     
+                // document.getElementById("user").innerHTML = JSON.stringify(data);
+            }
+           
+        })
+     })
+     
+  }
+
+  function verPublicadas(){
+    fetch('/facturas').then((response)=>{
+        response.json().then((data)=>{
+            if(data.error){
+               
+                return console.log(data.error)
+            } else {
+                   
+                    for(var i in data){
+                        rfcs= rfcs.concat(data[i].rfc)
+                        numeros=numeros.concat(data[i].numero)
+                        folioFs=folioFs.concat(data[i].folioFiscal)
+                        fechas=fechas.concat(data[i].invoiceDate)
+                        fechasVen=fechasVen.concat(data[i].dueDate)
+                        monedas=monedas.concat(data[i].moneda)
+                        aforos=aforos.concat(roundNum(data[i].aforo))
+                        status=status.concat(data[i].status)
+                    } 
+     
+                    var table = $('#tabla-facturas');
+                    var row, cell;
+                    var titles = $('<th class="cboxes-title"></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+                    table.append(titles)
+                    row = $('<tr />' );
+                    table.append( row );
+                    cell=$('<td id="cb-todos"><input type="checkbox"  onclick="selTodos()" />Seleccionar Todos<br/></td>')
+                    row.append( cell );
+                 for(var i=0; i<rfcs.length; i++){
+                     if(data[i].status!="Vendida"){
+                         row = $('<tr />' );
+                         table.append( row );
+                         cell = $('<td class="cboxes"><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()" name="cboxes"></form></td><td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
                          row.append( cell );
                      }
      
@@ -74,6 +119,15 @@ async function apiGetProveedores(){
      })
      
   }
+
+
+function selTodos(){
+    checkboxes = document.getElementsByName('cboxes');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = true;
+      }
+      descontar()
+}
 
 
 
