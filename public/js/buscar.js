@@ -53,7 +53,7 @@ if(document.getElementById("fechaVen").value){
     for(var i in facturas){
         const searchDate = new Date(facturas[i].dueDate)
        // console.log(searchDate.getDate(), searchDate.getMonth()+1, searchDate.getFullYear())
-        if((searchDate.getDate()+1==day)&&(searchDate.getMonth()+1==month)&&(searchDate.getFullYear()==year))
+        if((searchDate.getDate()==day)&&(searchDate.getMonth()+1==month)&&(searchDate.getFullYear()==year))
         {
            numeros.push(facturas[i].numero)
         }
