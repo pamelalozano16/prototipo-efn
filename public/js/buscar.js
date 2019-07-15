@@ -169,6 +169,8 @@ async function buscarPublicadas(){
     }
 
 async function buscarVendidas(){
+    document.getElementById("busqueda").style.display="block";
+    document.getElementById("tabla-busqueda").style.display="block";
     if(document.getElementById("fechaVen").value){
         var date=document.getElementById("fechaVen").value
         date=new Date(date)

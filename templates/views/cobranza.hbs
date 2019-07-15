@@ -91,7 +91,8 @@ Cobranza
 <p id="res">No hay facturas vendidas</p>
 
        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="tabla-busqueda" style="margin-top:50px;"></table>
+           <h3 id="busqueda">Busqueda:</h3>
+        <table id="tabla-busqueda" style="margin-top:50px; margin-bottom:150px;"></table>
         </div>
 
        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
@@ -105,6 +106,8 @@ Cobranza
     <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
     <script>
+        document.getElementById("tabla-busqueda").style.display="none";
+            document.getElementById("busqueda").style.display="none";
         verVendidas()
     </script>
     <script src="./js/buscar.js"></script> >
