@@ -91,9 +91,15 @@ li a:hover {
         Seguro que quieres subir esta factura? 
         <button onclick="facturasOk()">Confirmar</button>
 </div>
-       <script>
-           document.getElementById("sidebar").style.width=(document.getElementsByClassName("main").style.width)
-       </script>
+<script>
+            window.onload = function() {
+                
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
+        </script>
  <script src="./js/upload.js"></script>       
     </body>
 </html>
