@@ -4,6 +4,7 @@ const path = require('path')
 
 const csvFilePath=path.join(__dirname, '../public/file.csv')
 const  result = csv({
+    noheader:true,
     delimiter:'|',
     headers:["name","rfc","Id","address","numero","folioFiscal","invoiceDate","dueDate","moneda","aforo"]
 })
