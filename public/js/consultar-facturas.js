@@ -8,6 +8,21 @@ function formatNumber(num) {
      return newNum
    }
 
+   function formatDate(date) {
+    date=new Date(date)
+   var monthNames = [
+     "Jan", "Feb", "Mar",
+     "Apr", "May", "Jun", "Jul",
+     "Aug", "Sep", "Oct",
+     "Nov", "Dec"
+   ];
+ 
+   var day = date.getDate();
+   var monthIndex = date.getMonth();
+   var year = date.getFullYear();
+ 
+   return monthNames[monthIndex] + '/' + day + '/' + year;
+ }
 //END
 
 let rfcs = []
@@ -61,7 +76,7 @@ async function apiGetProveedores(){
 
                          row = $('<tr />' );
                          table.append( row );
-                         cell = $('<td class="cboxes"><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
+                         cell = $('<td class="cboxes"><form><input type="checkbox" id="cb-'+i+'" value="'+numeros[i]+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+formatDate(fechas[i])+'</td><td>'+formatDate(fechasVen[i])+'</td><td>'+monedas[i]+'</td><td>'+formatNumber(aforos[i])+'</td><td>'+status[i]+'</td>')
                          row.append( cell );
                      
      
