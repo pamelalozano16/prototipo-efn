@@ -36,6 +36,7 @@ const result = excelToJson({
     sheets: [{
         name:'sheet1',
         columnToKey: {
+            A:"name",
             B: "rfc",
             E: "numero",
             F:'folioFiscal',
@@ -139,7 +140,8 @@ app.post('/upload-txt', uploadTxt.single('uploadTxt'), (req, res)=>{
                'accept-encoding': 'gzip, deflate',
                Accept: '*/*',
                'Content-Type': 'application/json' },
-            body:{ 
+            body:{
+                "name":archivo[i].name, 
                 "rfc":archivo[i].rfc,
                 "numero":archivo[i].numero,
                 "folioFiscal":archivo[i].folioFiscal,

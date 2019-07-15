@@ -49,12 +49,12 @@ function formatNumber(num) {
                  document.getElementById("total").innerHTML=formatNumber(sumaAforo)
                  var table = $('#tabla-facturas');
                  var row, cell;
-                 var titles = $('<th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th>Valor de la factura</th>');
+                 var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th>Valor de la factura</th>');
                  table.append(titles)
               for(var i=0; i<rfcs.length; i++){
               row = $('<tr />' );
               table.append( row );
-              cell = $('<td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td>')
+              cell = $('<td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+fechas[i]+'</td><td>'+fechasVen[i]+'</td><td>'+monedas[i]+'</td><td>'+aforos[i]+'</td>')
               row.append( cell );
              }
   
