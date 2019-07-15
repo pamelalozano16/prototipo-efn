@@ -109,7 +109,7 @@ module.exports = {
         ];
            
 
-        const json2csvParser = new Parser({fields});
+        const json2csvParser = new Parser({fields, delimiter:'\|'});
 const csv = json2csvParser.parse(data);
  fs.writeFileSync(pDPath, csv, (err)=>{
     if(err) throw err;

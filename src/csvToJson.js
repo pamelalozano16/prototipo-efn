@@ -10,6 +10,7 @@ const  result = csv({
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
     for(var i in jsonObj){
+        // delete jsonObj[i].name
         delete jsonObj[i].Id
         delete jsonObj[i].address
         delete jsonObj[i].field11

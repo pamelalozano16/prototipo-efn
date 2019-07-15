@@ -228,6 +228,7 @@ app.get('/descontar-facturas',  (req, res) => {
     res.render('descontar-facturas')
 })
 app.get('/cobranza',  (req, res) => {
+    j2c.jsontocsv()
     res.render('cobranza')
 })
 app.get('/proveedor',  (req, res) => {
