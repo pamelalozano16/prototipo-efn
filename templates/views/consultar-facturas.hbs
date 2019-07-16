@@ -85,17 +85,26 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
     <h3>Buscar:</h3>
 <form>
 
-<div id="names-form" style="float:left;"></div>
+<span style="float:left; margin-left:30px;">Nombre Comprador:</span><div id="names-form" style="float:left;"></div>
 <input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
 <span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+<span style="float:left; margin-left:30px;">Status:</span><select id="search-status" class="tipo" style="float:left; margin-left:30px;" >
+    <option></option>
+    <option value="Publicada">Publicada</option>
+    <option value="En Proceso">En Proceso</option>
+    <option value="Vendida">Vendida</option>
+</select>
+<span style="float:left; margin-left:30px;">Moneda:</span><select id="search-moneda" class="tipo" style="float:left; margin-left:30px;" >
+    <option></option>
+    <option value="mxn">MXN</option>
+    <option value="usd">USD</option>
+</select>
 </form>
 </div>
 <div style="margin-bottom:50px; padding-top: 50px;">
-    <button style="background-color:#0b7f43; " onclick="buscar()">Buscar</button>
+    <button style="background-color:#0b7f43;margin-right: 50px;float:right;" onclick="buscar()">Buscar</button>
 </div>
-<div style="margin-top:30px;">
-    <button style="float:left; " onclick="window.location.href='/carga-facturas'">Cargar</button>
-</div>
+
 
  
 <div style="margin-top:150px;">
@@ -103,7 +112,10 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
     <table id="tabla-facturas"></table>
     <table id="tabla-busqueda"></table>
     <p id="res2" style="display:none; padding-top:100px; ">No hay resultados de su busqueda. Favor de refrescar la página.</p>
-    <button style="background-color:#0b7f43" onclick="window.location.href='facturas.csv'">Download CSV</button>
+    <p id="resumen" style="font-weight: 600;font-size: 17px;">Documentos encontrados: <span id="resumenNum"></span></p>
+   <p id="resumenV" style="font-weight: 600;font-size: 17px;">Valor de Documentos: $<span id="resumenValor"></span></p>
+  
+    <button id="download-btn" style="background-color:#0b7f43" onclick="window.location.href='facturas.csv'">Download CSV</button>
 </div>
 
 
@@ -121,9 +133,9 @@ Libor: <p id="libor" style="display:inline;">2.35</p>% USD
 
     <script src="./js/temp.js"></script> 
     <script src="./js/consultar-facturas.js"></script> 
-    <script>
+    {{!-- <script>
         verTabla()
-    </script>
+    </script> --}}
     <script src="./js/buscar.js"></script> 
 
 </body>

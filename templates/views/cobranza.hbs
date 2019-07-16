@@ -84,22 +84,25 @@ Cobranza
 
     </form>
     <div style="margin-bottom:50px; padding-top: 50px;">
-    <button onclick="buscarVendidas()">Buscar</button>
+    <button onclick="buscarVendidas()" >Buscar</button>
 </div>
 </div>
 <div style="margin-top:100px;">
-<p id="res">No hay facturas vendidas</p>
+<p id="res"></p>
 
+<div style=" margin-bottom:100px;">
+ <h3 id="busqueda">Busqueda:</h3>
        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-           <h3 id="busqueda">Busqueda:</h3>
-        <table id="tabla-busqueda" style="margin-top:50px; margin-bottom:150px;"></table>
+        <table id="tabla-busqueda" style="margin-top:50px;"></table>
         </div>
 
-       <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="facturas-vendidas" style="margin-top:50px;"></table>
-        </div>
-<p style="font-size:15px; font-weight:600;">Total Vendido: $<span id="total-vendido" ></span> MXN</p>
-<button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
+</div>
+          
+    <p id="resumen" style="font-weight: 600;font-size: 17px;">Documentos encontrados: <span id="resumenNum"></span></p>
+   <p id="resumenV" style="font-weight: 600;font-size: 17px;">Valor de Documentos: $<span id="resumenValor"></span></p>
+    <p id="resumenDM" style="font-weight: 600;font-size: 17px;">Total de Intereses: $<span id="resumenDiscountMargin"></span></p>
+  
+<button style="background-color:#0b7f43" id="download-btn" onclick="window.location.href='vendidas.csv'">Download CSV</button>
 </div>
 
 </div>
@@ -108,7 +111,7 @@ Cobranza
     <script>
         document.getElementById("tabla-busqueda").style.display="none";
             document.getElementById("busqueda").style.display="none";
-        verVendidas()
+
     </script>
     <script src="./js/buscar.js"></script> >
     </body>

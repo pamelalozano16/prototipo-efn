@@ -7,8 +7,21 @@ function rfc(){
         return ""
     }
 }
+document.getElementById("download-btn").style.display="none";
+document.getElementById("resumen").style.display="none";
+document.getElementById("resumenV").style.display="none";
+document.getElementById("resumenDM").style.display="NONE";
 
 async function buscar(){
+    var resumenNum =0;
+    var resumenValor =0;
+
+    var Parent = document.getElementById("tabla-busqueda");
+    while(Parent.hasChildNodes())
+    {
+       Parent.removeChild(Parent.firstChild);
+    }
+
 
 const myrfc=rfc()
     if(myrfc!=""){
@@ -27,8 +40,8 @@ const myrfc=rfc()
              table.append( row );
              cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
              row.append( cell );
-         
-
+         resumenValor+=data[i].aforo
+        resumenNum++;
     }
         console.log(data)
        } else{
@@ -36,9 +49,10 @@ const myrfc=rfc()
            document.getElementById("tabla-busqueda").style.display="none";
            document.getElementById("res2").style.display="block";
        }
+       document.getElementById("download-btn").style.display="block";
     }
 
-if(document.getElementById("fechaVen").value){
+else if(document.getElementById("fechaVen").value){
     var date=document.getElementById("fechaVen").value
     date=new Date(date)
        const day = date.getDate()+1
@@ -77,14 +91,66 @@ if(document.getElementById("fechaVen").value){
             table.append( row );
             cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
             row.append( cell );
-        
-   
+            resumenNum++;
+            resumenValor+=data[i].aforo
    }
     }
     }
+    document.getElementById("download-btn").style.display="block";
+} else if(document.getElementById("search-status").value){
+    const facturasJSON = await fetch('/facturas')
+    const facturas = await facturasJSON.json()
+    const data = facturas
+    var table = $('#tabla-busqueda');
+    var row, cell;
+    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+    table.append(titles)
+    for(var i=0; i<facturas.length; i++){
+        if(facturas[i].status==document.getElementById("search-status").value){
+            row = $('<tr />' );
+            table.append( row );
+            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
+            row.append( cell );
+            resumenNum++;
+            resumenValor+=data[i].aforo;
+        }
 }
+document.getElementById("download-btn").style.display="block";
+} else if(document.getElementById("search-moneda").value){
 
+    const facturasJSON = await fetch('/facturas')
+    const facturas = await facturasJSON.json()
+    const data = facturas
+    var table = $('#tabla-busqueda');
+    var row, cell;
+    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
+    table.append(titles)
+    for(var i=0; i<facturas.length; i++){
 
+        if(facturas[i].moneda==document.getElementById("search-moneda").value){
+            row = $('<tr />' );
+            table.append( row );
+            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
+            row.append( cell );
+            resumenNum++;
+            resumenValor+=data[i].aforo;
+        }
+}
+document.getElementById("download-btn").style.display="block";
+} else{
+    const facturasJSON = await fetch('/facturas')
+    const facturas = await facturasJSON.json()
+    resumenNum=facturas.length;
+    for(var i in facturas){
+        resumenValor+=facturas[i].aforo
+    }
+  verTabla()
+  document.getElementById("download-btn").style.display="block";
+}
+document.getElementById("resumenV").style.display="block";
+document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
+document.getElementById("resumen").style.display="block";
+document.getElementById("resumenNum").innerHTML=resumenNum
 }
 
 async function buscarPublicadas(){
@@ -102,7 +168,7 @@ async function buscarPublicadas(){
             var titles = $('<th class="cboxes-title"></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
             table.append(titles)
          for(var i=0; i<data.length; i++){
-             if (data[i].status!="Vendida"){
+             if (data[i].status=="Publicada"){
                 row = $('<tr />' );
                 table.append( row );
                 cell = $('<td class="cboxes"><form><input type="checkbox" id="cbs-'+i+'" value="'+data[i].numero+'" onchange="descontar()"></form></td><td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+data[i].invoiceDate+'</td><td>'+data[i].dueDate+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
@@ -171,6 +237,16 @@ async function buscarPublicadas(){
 async function buscarVendidas(){
     document.getElementById("busqueda").style.display="block";
     document.getElementById("tabla-busqueda").style.display="block";
+    var resumenNum =0;
+    var resumenValor =0;
+    var resumenDM =0;
+
+    var Parent = document.getElementById("tabla-busqueda");
+    while(Parent.hasChildNodes())
+    {
+       Parent.removeChild(Parent.firstChild);
+    }
+
     if(document.getElementById("fechaVen").value){
         var date=document.getElementById("fechaVen").value
         date=new Date(date)
@@ -212,14 +288,16 @@ async function buscarVendidas(){
                 '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
                 row.append( cell );
       
-            
+            resumenNum++;
+            resumenValor+=data[i].aforo;
+            resumenDM+=data[i].discountMargin;
        
        }
         }
         }
     }
 
-    if(document.getElementById("fechaMaxVen").value){
+else if(document.getElementById("fechaMaxVen").value){
         var date=document.getElementById("fechaMaxVen").value
         date=new Date(date)
            const day = date.getDate()+1
@@ -259,13 +337,31 @@ async function buscarVendidas(){
                 '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
                 '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].efnFee)+'</td><td>'+data[i].status+'</td>')
                 row.append( cell );
-            
+                resumenNum++;
+                resumenValor+=data[i].aforo;
+                resumenDM+=data[i].discountMargin;
        
        }
         }
         }
     } 
+else{
+    const facturasJSON = await fetch('/facturasVendidas')
+    const facturas = await facturasJSON.json()
+    resumenNum=facturas.length;
+    for(var i in facturas){
+        resumenValor+=facturas[i].aforo
+        resumenDM+=facturas[i].discountMargin
+    }
+    verVendidas()
+  document.getElementById("download-btn").style.display="block";
 
-    
-   
+}
+document.getElementById("download-btn").style.display="block";
+document.getElementById("resumenV").style.display="block";
+document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
+document.getElementById("resumen").style.display="block";
+document.getElementById("resumenNum").innerHTML=resumenNum
+document.getElementById("resumenDM").style.display="block";
+document.getElementById("resumenDiscountMargin").innerHTML=formatNumber(roundNum(resumenDM))
 }
