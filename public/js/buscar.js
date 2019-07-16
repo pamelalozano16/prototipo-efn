@@ -10,7 +10,7 @@ function rfc(){
 document.getElementById("download-btn").style.display="none";
 document.getElementById("resumen").style.display="none";
 document.getElementById("resumenV").style.display="none";
-document.getElementById("resumenDM").style.display="NONE";
+document.getElementById("resumenDM").style.display="none";
 
 async function buscar(){
     var resumenNum =0;

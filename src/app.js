@@ -220,6 +220,9 @@ app.get('/banco-comprador',  (req, res) => {
 app.get('/banco-clientes',  (req, res) => {
     res.render('banco-clientes')
 })
+app.get('/banco-comprados',  (req, res) => {
+    res.render('banco-comprados')
+})
 app.get('/banco-facturas',  (req, res) => {
     j2c.jsontocsv()
     res.render('banco-facturas')

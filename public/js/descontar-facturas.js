@@ -1,6 +1,8 @@
 
  document.getElementById("result").style.visibility="hidden";
  document.getElementById("result").style.display="none";
+ document.getElementById("resumen").style.display="none";
+document.getElementById("resumenV").style.display="none";
         
 let rfcs = []
 let numeros =[]
@@ -117,6 +119,8 @@ async function apiGet(){
 
 
 fetch('/facturaTemp').then((response)=>{
+  var resumenNum=0;
+  var resumenValor=0;
     response.json().then((data)=>{
         if(data.error){
             document.getElementById("error").innerHTML = data.error;
@@ -145,11 +149,17 @@ fetch('/facturaTemp').then((response)=>{
              cell = $('<td>'+data[i].name+'</td><td class="idnums">'+rfcs[i]+'</td><td>'+numeros[i]+'</td><td>'+folioFs[i]+'</td><td>'+formatDate(fechas[i])+'</td><td>'+formatDate(fechasVen[i])+'</td><td>'+monedas[i]+'</td><td> $'+formatNumber(aforos[i])+'</td><td> $'+formatNumber(data[i].iva)+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+data[i].aforoP+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+
              '</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen"> '+formatDate(data[i].matuDate)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen"> $'+formatNumber(data[i].efnFee)+'</td>')
              row.append( cell );
+             resumenNum++;
+             resumenValor+=data[i].purchasePrice;
             }
-
+            document.getElementById("resumenV").style.display="block";
+            document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
+            document.getElementById("resumen").style.display="block";
+            document.getElementById("resumenNum").innerHTML=resumenNum
         }
        
     })
+
  })
 
 

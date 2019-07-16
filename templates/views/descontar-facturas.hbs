@@ -37,7 +37,9 @@
        <h1 id="result">Las facturas se han descontado, se te notificará cuando el banco confirme.</h1>
         <table id="tabla-resumen" style="margin-top:50px;"></table>
         <div style="margin-top:30px;">
-            
+                <p id="resumen" style="font-weight: 600;font-size: 17px;">Documentos encontrados: <span id="resumenNum"></span></p>
+   <p id="resumenV" style="font-weight: 600;font-size: 17px;">Valor de Documentos: $<span id="resumenValor"></span></p>
+  
             <button style="float:left" onclick="window.location.href='/descontar-documentos'">Regresar</button>
             <button style="float:left; margin-right:10px;" onclick="confirmarDescuento()" id="confirmar">Confirmar</button>
         </div>

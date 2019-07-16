@@ -85,27 +85,16 @@ li a:hover {
            document.getElementById("op-2").innerHTML="Sell Offers"
            document.getElementById("op-2").href="/banco-facturas"
            document.getElementById("op-3").innerHTML="Documentos Comprados"
-         document.getElementById("op-3").href="/banco-facturas#facturas-vendidas"
+        document.getElementById("op-3").href="/banco-comprados"
        </script>
        <div class="main">
 
-    <h1>Sell Offers IACNA</h1>
+    <h1>Sell Offers</h1>
         <p id="result">No hay facturas descontadas por el momento.</p>
         <table id="facturas-descontadas"></table>
         <div style="margin-top:30px;"><button onclick="venderFacturas()">Confirmar</button></div>
 
-      
-    <div style="margin-top:70px;">
-       
-    <h1>Documentos Comprados IACNA</h1>
-        <p id="result2">No hay facturas vendidas.</p>
-        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="facturas-vendidas" style="margin-top:50px;"></table>
-        </div>
 
-    <button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
-           
-           </div>
        
     </div>
 
