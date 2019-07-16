@@ -76,5 +76,18 @@ router.get('/searchFd/:numero', async (req, res)=>{
     }
 })
 
+router.get('/searchFdbyRFC/:rfc', async (req, res)=>{
+    myrfc=req.params.rfc
+
+    try{
+        const user = await FacturaD.find({"rfc":myrfc})
+        if(!user){throw new Error ('not found')}
+
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send(e.message)
+    }
+})
 
 module.exports =router

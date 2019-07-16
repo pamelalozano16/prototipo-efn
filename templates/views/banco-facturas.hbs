@@ -90,6 +90,15 @@ li a:hover {
        <div class="main">
 
     <h1>Sell Offers</h1>
+    <form style="margin-top:50px;">
+<span style="float:left; margin-left:30px;">Nombre Comprador:</span><div id="names-form" style="float:left;"></div>
+<input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
+<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+
+    </form>
+<div style=" padding-top: 50px; margin-top:100px;">
+    <button type="button" style="background-color:#0b7f43;float:left;margin-bottom:100px;" onclick="buscarDescontadas()">Buscar</button>
+</div>
         <p id="result">No hay facturas descontadas por el momento.</p>
         <table id="facturas-descontadas"></table>
         <div style="margin-top:30px;"><button onclick="venderFacturas()">Confirmar</button></div>
@@ -101,5 +110,8 @@ li a:hover {
 
 
 <script src="./js/banco-facturas.js"></script> 
+<script>
+    verDescontadas()
+</script>
     </body>
 </html>

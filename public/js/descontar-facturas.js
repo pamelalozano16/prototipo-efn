@@ -205,6 +205,8 @@ apiGet().then((result)=>{
   document.getElementById("confirmar").style.display="none";
   document.getElementById("result").style.visibility="visible";
   document.getElementById("result").style.display="block";
+  document.getElementById("resumen").style.display="none";
+  document.getElementById("resumenV").style.display="none";
   fetch('/facturaTemp',{
     method: 'DELETE'
   })
