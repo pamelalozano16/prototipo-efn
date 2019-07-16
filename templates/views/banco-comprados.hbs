@@ -46,7 +46,7 @@ li a:hover {
 
 .sidebar{
       float:left;
-      height:120%;
+      height:180%;
       width: 200px;
       position:absolute;
       background-color:#292c35;
@@ -93,19 +93,46 @@ li a:hover {
     <div style="margin-top:70px;">
        
     <h1>Documentos Comprados</h1>
-        <p id="result2">No hay facturas vendidas.</p>
-        <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
-        <table id="facturas-vendidas" style="margin-top:50px;"></table>
+       <div style="margin-top:50px;">
+    <h3>Buscar:</h3>
+    <form>
+        
+<span style="float:left; margin-left:30px;">Nombre Proveedor:</span><div id="namesP-form" style="float:left;"></div>
+
+        <span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+   <span style="float:left; margin-left:30px;">Fecha Máxima de Vencimiento:</span><input type="date" style="float:left; margin-left:10px;" id="fechaMaxVen">
+
+    </form>
+    <div style="margin-bottom:50px; margin-top:100px;padding-top: 50px;">
+    <button onclick="buscarVendidas()" >Buscar</button>
+</div>
+</div>
+<div style="margin-top:100px;">
+<p id="res"></p>
+
+<div style=" margin-bottom:100px;">
+ <h3 id="busqueda">Busqueda:</h3>
+       <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
+        <table id="tabla-busqueda" style="margin-top:50px;"></table>
         </div>
 
-    <button style="background-color:#0b7f43" onclick="window.location.href='vendidas.csv'">Download CSV</button>
-           
-           </div>
-       
-    </div>
+</div>
+          
+    <p id="resumen" style="font-weight: 600;font-size: 17px;">Documentos encontrados: <span id="resumenNum"></span></p>
+   <p id="resumenV" style="font-weight: 600;font-size: 17px;">Valor de Documentos: $<span id="resumenValor"></span></p>
+    <p id="resumenDM" style="font-weight: 600;font-size: 17px;">Total de Intereses: $<span id="resumenDiscountMargin"></span></p>
+  
+<button style="background-color:#0b7f43" id="download-btn" onclick="window.location.href='vendidas.csv'">Download CSV</button>
+</div>
 
+</div>
+    <script src="./js/temp.js"></script> 
+    <script src="./js/consultar-facturas.js"></script> 
+    <script>
+        document.getElementById("tabla-busqueda").style.display="none";
+            document.getElementById("busqueda").style.display="none";
 
-
-<script src="./js/banco-facturas.js"></script> 
+    </script>
+    <script src="./js/buscar.js"></script> 
     </body>
 </html>

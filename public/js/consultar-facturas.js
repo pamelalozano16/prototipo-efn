@@ -268,3 +268,24 @@ function namesOptions(){
 }
 
 namesOptions()
+
+x=-1
+function namesPOptions(){
+    x++;
+    fetch('/prueba').then((response)=>{
+        response.json().then((data)=>{
+            var opciones="<form><select name='nombres' class='tipo' id='nombres'><option value="+"></option>"
+            for(var j in data){
+                var opcion="<option value="+data[j].rfc+">"+data[j].name+"</option>"
+            opciones+=opcion
+            }
+            console.log(opciones)
+            opciones+="</select></form>"
+            var aqui = $("#namesP-form")
+            var bank= $(opciones)
+            aqui.append(bank)
+        })
+    })
+}
+
+namesPOptions()
