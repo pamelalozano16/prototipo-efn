@@ -1,5 +1,6 @@
 const express = require('express')
 const Factura = require('../models/facturaPublicada')
+const j2c = require('../busqueda')
 const router = new express.Router()
 
 router.get('/facturas', async (req, res)=>{
@@ -78,7 +79,8 @@ router.get('/searchbyRFC/:rfc/:dueDate?/:moneda?/:status?', async (req, res, nex
         console.log(params)
         const user = await Factura.find(params)
         if(!user){throw new Error ('not found')}
-
+        //USER TO CSV
+        j2c.jsontocsv(user)
         res.send(user)
     }
     catch(e){

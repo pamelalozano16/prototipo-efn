@@ -8,6 +8,7 @@ function rfc(){
     }
 }
 document.getElementById("download-btn").style.display="none";
+document.getElementById("busqueda-btn").style.display="none";
 document.getElementById("resumen").style.display="none";
 document.getElementById("resumenV").style.display="none";
 document.getElementById("resumenDM").style.display="none";
@@ -80,11 +81,13 @@ console.log(data)
          resumenValor+=data[i].aforo
         resumenNum++;
     }
-    document.getElementById("download-btn").style.display="block";
+    document.getElementById("busqueda-btn").style.display="block";
+    document.getElementById("download-btn").style.display="none";
         } 
         else{
             document.getElementById("res2").style.display="block";
             document.getElementById("download-btn").style.display="none";
+            document.getElementById("busqueda-btn").style.display="none";
         }
 
         document.getElementById("resumenV").style.display="block";

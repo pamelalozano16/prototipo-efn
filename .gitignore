@@ -1,3 +1,6 @@
 node_modules
 initmongo.txt
 config
+public/busqueda.csv
+public/facturas.csv
+public/vendidas.csv
