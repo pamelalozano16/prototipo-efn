@@ -50,9 +50,15 @@ const result = excelToJson({
 });
  
 const final = result.sheet1
+for(var i in final){
+    final[i].dueDate=new Date(final[i].dueDate)
+    final[i].dueDate.setHours(0,0,0,0);
+    final[i].invoiceDate=new Date(final[i].invoiceDate)
+    final[i].invoiceDate.setHours(0,0,0,0);
+    console.log(final[i].dueDate)
+    console.log(final[i].invoiceDate)
+}
 
-
-console.log(final)
 return final
 }
 
