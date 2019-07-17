@@ -1,2 +1,3 @@
 "Nombre del Comprador"|"RFC"|"Invoice Number"|"Folio Fiscal"|"Fecha de Factura"|"Fecha de Vencimiento"|"Moneda"|"Valor de la Factura"|"Advance Rate"|"Dias de Gracia"|"Discount Margin"|"Discount Period"|"Fecha maxima de vencimiento"|"IVA"|"Libor"|"Trade Date"|"Purchase Price"
-"Toyota"|"TY092379"|"FACTURA123"|"FOLIOFISCAL1"|"2019-07-11T00:00:00.000Z"|"2019-09-11T00:00:00.000Z"|"mxn"|20000|20000|10|91.51|70||2758.62|0.0235|"2019-07-12T00:00:00.000Z"|19908.49
+"Toyota"|"TY092379"|"FACTURA147"|"f3059fec-28b0-4ae7-b474-e9c291f9d8c6"|"2019-07-14T00:00:00.000Z"|"2019-09-14T00:00:00.000Z"|"mxn"|109342.63|109342.63|10|485.98|68|"2019-09-23T05:00:00.000Z"|15081.74|0.0235|"2019-07-17T00:00:00.000Z"|108856.65
+"General Motors"|"XEXX010101000"|"FACTURA189"|"f3059fec-28b0-4ae7-b474-e9c291f9d8c7"|"2019-07-16T00:00:00.000Z"|"2019-09-16T00:00:00.000Z"|"usd"|103112.79|94863.77|9|427.83|69|"2019-09-24T05:00:00.000Z"|14222.45|0.0235|"2019-07-17T00:00:00.000Z"|94435.94

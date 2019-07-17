@@ -38,7 +38,7 @@ function formatDate(date) {
      "Nov", "Dec"
    ];
  
-   var day = date.getDate()+1;
+   var day = date.getDate();
    var monthIndex = date.getMonth();
    var year = date.getFullYear();
  
