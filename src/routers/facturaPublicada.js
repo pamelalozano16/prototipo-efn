@@ -62,11 +62,21 @@ router.get('/searchF/:numero', async (req, res)=>{
         res.status(500).send(e.message)
     }
 })
-router.get('/searchbyRFC/:rfc', async (req, res)=>{
-    invoiceNumber=req.params.rfc
 
+router.get('/searchbyRFC/:rfc/:dueDate?/:moneda?/:status?', async (req, res, next)=>{
+
+   params=req.params
     try{
-        const user = await Factura.find({"rfc":invoiceNumber})
+        for(var i in params){
+            if(params[i]=="&"||params[i]==undefined){
+                delete params[i]
+            }
+        }
+        if(params.dueDate){
+            params.dueDate=new Date(params.dueDate)
+        }
+        console.log(params)
+        const user = await Factura.find(params)
         if(!user){throw new Error ('not found')}
 
         res.send(user)
@@ -75,17 +85,6 @@ router.get('/searchbyRFC/:rfc', async (req, res)=>{
         res.status(500).send(e.message)
     }
 })
-router.get('/searchbyDate/:date', async (req, res)=>{
-    date=(req.params.date)
+ 
 
-    try{
-        const user = await Factura.find({"dueDate":date})
-        if(!user){throw new Error ('not found')}
-
-        res.send(user)
-    }
-    catch(e){
-        res.status(500).send(e.message)
-    }
-})
 module.exports =router

@@ -146,9 +146,11 @@ function createData(){
                   const efnFee=roundNum(advanceRate*(libor+creditSpread+6)*(discountPeriod/360))
                   const purchasePrice=roundNum(advanceRate-discountMargin)
                 var maxDate = new Date()
+                maxDate.setHours(0,0,0,0);
                 maxDate.setDate(matuDate[0])
                 maxDate.setMonth(matuDate[1]-1)
                 maxDate.setFullYear(matuDate[2])
+                
 
             fetch('/facturaTemp/'+_id, {
               method: "PATCH",

@@ -21,14 +21,51 @@ async function buscar(){
     {
        Parent.removeChild(Parent.firstChild);
     }
-
-
 const myrfc=rfc()
-    if(myrfc!=""){
-        console.log(myrfc)
-     const dataJson= await fetch('/searchbyRFC/'+myrfc)
-        const data = await dataJson.json()
-       if(data.length>0){
+var dateD=document.getElementById("fechaVen").value
+
+var date=""
+if(dateD!=""){
+    
+dateD= new Date(dateD)
+const day = dateD.getDate()+1
+const month = dateD.getMonth()+1
+date = month+"-"+day+"-"+dateD.getFullYear()
+}
+
+var moneda = document.getElementById("search-moneda").value
+var status =document.getElementById("search-status").value
+var data =[myrfc, date, moneda, status]
+var contadorVacio=0;
+for(var i in data){
+    if(data[i]==undefined||data[i]==null||data[i]==""){
+        data[i]="&"
+        contadorVacio++;
+    }
+}
+//SI NO BUSCO NADA
+if(contadorVacio==4){
+ var myDataJSON = await fetch('/facturas')
+ var myData = await myDataJSON.json()
+ resumenNum = myData.length
+ for(var i in myData){resumenValor+=myData[i].aforo};
+    document.getElementById("download-btn").style.display="block";
+    document.getElementById("resumenV").style.display="block";
+    document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
+    document.getElementById("resumen").style.display="block";
+    document.getElementById("resumenNum").innerHTML=resumenNum
+    verTabla()
+    return 0;
+}
+
+
+console.log(data)
+
+    const dataJson = await fetch('/searchbyRFC/'+data[0]+'/'+data[1]+'/'+data[2]+'/'+data[3])
+    const dataApi = await dataJson.json()
+    data=dataApi
+    console.log(data)
+    if(data.length>0){
         document.getElementById("res2").style.display="none";
         document.getElementById("tabla-facturas").style.display="none";
         var table = $('#tabla-busqueda');
@@ -43,115 +80,20 @@ const myrfc=rfc()
          resumenValor+=data[i].aforo
         resumenNum++;
     }
-        console.log(data)
-       } else{
-           document.getElementById("tabla-facturas").style.display="none";
-           document.getElementById("tabla-busqueda").style.display="none";
-           document.getElementById("res2").style.display="block";
-       }
-       document.getElementById("download-btn").style.display="block";
-    }
-
-else if(document.getElementById("fechaVen").value){
-    var date=document.getElementById("fechaVen").value
-    date=new Date(date)
-       const day = date.getDate()+1
-       const month = date.getMonth()+1
-       const year = date.getFullYear()
-    console.log( date.getDate()+1, date.getMonth()+1, date.getFullYear())
-   
-   
-    const facturasJSON = await fetch('/facturas')
-    const facturas = await facturasJSON.json()
-    var numeros=[]
-    for(var i in facturas){
-        const searchDate = new Date(facturas[i].dueDate)
-       // console.log(searchDate.getDate(), searchDate.getMonth()+1, searchDate.getFullYear())
-        if((searchDate.getDate()==day)&&(searchDate.getMonth()+1==month)&&(searchDate.getFullYear()==year))
-        {
-           numeros.push(facturas[i].numero)
-        }
-       
-    }
-    console.log(numeros)
-   
-    var table = $('#tabla-busqueda');
-    var row, cell;
-    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
-    table.append(titles)
-    for (var i in numeros){
-       const dJson= await fetch('/searchF/'+numeros[i])
-       const data = await dJson.json()
-      if(data.length>0){
-       document.getElementById("res2").style.display="none";
-       document.getElementById("tabla-facturas").style.display="none";
-   
-    for(var i=0; i<data.length; i++){
-            row = $('<tr />' );
-            table.append( row );
-            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
-            row.append( cell );
-            resumenNum++;
-            resumenValor+=data[i].aforo
-   }
-    }
-    }
     document.getElementById("download-btn").style.display="block";
-} else if(document.getElementById("search-status").value){
-    const facturasJSON = await fetch('/facturas')
-    const facturas = await facturasJSON.json()
-    const data = facturas
-    var table = $('#tabla-busqueda');
-    var row, cell;
-    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
-    table.append(titles)
-    for(var i=0; i<facturas.length; i++){
-        if(facturas[i].status==document.getElementById("search-status").value){
-            row = $('<tr />' );
-            table.append( row );
-            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
-            row.append( cell );
-            resumenNum++;
-            resumenValor+=data[i].aforo;
+        } 
+        else{
+            document.getElementById("res2").style.display="block";
+            document.getElementById("download-btn").style.display="none";
         }
-}
-document.getElementById("download-btn").style.display="block";
-} else if(document.getElementById("search-moneda").value){
 
-    const facturasJSON = await fetch('/facturas')
-    const facturas = await facturasJSON.json()
-    const data = facturas
-    var table = $('#tabla-busqueda');
-    var row, cell;
-    var titles = $('<th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
-    table.append(titles)
-    for(var i=0; i<facturas.length; i++){
-
-        if(facturas[i].moneda==document.getElementById("search-moneda").value){
-            row = $('<tr />' );
-            table.append( row );
-            cell = $('<td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+'</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td><td>'+data[i].status+'</td>')
-            row.append( cell );
-            resumenNum++;
-            resumenValor+=data[i].aforo;
-        }
-}
-document.getElementById("download-btn").style.display="block";
-} else{
-    const facturasJSON = await fetch('/facturas')
-    const facturas = await facturasJSON.json()
-    resumenNum=facturas.length;
-    for(var i in facturas){
-        resumenValor+=facturas[i].aforo
+        document.getElementById("resumenV").style.display="block";
+        document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
+        document.getElementById("resumen").style.display="block";
+        document.getElementById("resumenNum").innerHTML=resumenNum
     }
-  verTabla()
-  document.getElementById("download-btn").style.display="block";
-}
-document.getElementById("resumenV").style.display="block";
-document.getElementById("resumenValor").innerHTML=formatNumber(roundNum(resumenValor))
-document.getElementById("resumen").style.display="block";
-document.getElementById("resumenNum").innerHTML=resumenNum
-}
+
+
 
 async function buscarPublicadas(){
 

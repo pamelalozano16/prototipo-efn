@@ -66,10 +66,6 @@ module.exports = {
             value: 'aforo'
           },
           {
-            label: 'Valor de la Factura',
-            value: 'aforo'
-          },
-          {
             label: 'Advance Rate',
             value:'advanceRate'
           },

@@ -43,8 +43,10 @@ function individual(){
     const rfc = document.getElementById("rfc").value
     const numero = document.getElementById("numero").value
     const folioFiscal =document.getElementById("folioFiscal").value
-    const invoiceDate = document.getElementById("invoiceDate").value
-    const dueDate = document.getElementById("dueDate").value
+    var invoiceDate = new Date(document.getElementById("invoiceDate").value)
+   invoiceDate.setHours(0,0,0,0);
+    var dueDate = new Date (document.getElementById("dueDate").value)
+    dueDate.setHours(0,0,0,0);
     const moneda = document.getElementById("moneda").value
     const aforo = document.getElementById("aforo").value
     const aforoP = document.getElementById("aforoP").value

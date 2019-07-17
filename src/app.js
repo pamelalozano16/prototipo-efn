@@ -132,6 +132,10 @@ app.post('/upload-txt', uploadTxt.single('uploadTxt'), (req, res)=>{
         let archivo=response
         console.log(archivo)
         for(var i in archivo){
+            var invoiceDate = new Date(archivo[i].invoiceDate)
+            invoiceDate.setHours(0,0,0,0);
+            var dueDate = new Date(archivo[i].dueDate)
+            dueDate.setHours(0,0,0,0);
             var options = { method: 'POST',
             url: 'https://prototipo-efn.herokuapp.com/facturaTemp',
             headers: 
@@ -145,8 +149,8 @@ app.post('/upload-txt', uploadTxt.single('uploadTxt'), (req, res)=>{
                 "rfc":archivo[i].rfc,
                 "numero":archivo[i].numero,
                 "folioFiscal":archivo[i].folioFiscal,
-                "invoiceDate":archivo[i].invoiceDate,
-                "dueDate":archivo[i].dueDate,
+                "invoiceDate":invoiceDate,
+                "dueDate":dueDate,
                 "moneda":archivo[i].moneda,
                 "aforo":archivo[i].aforo
             },
