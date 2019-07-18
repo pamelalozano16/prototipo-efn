@@ -88,6 +88,7 @@ li a:hover {
 <form>
     <input id="search" placeholder="rfc"><br>
     <select class="tipo" id="sel">
+        <option></option>
         <option value="Proveedor">Proveedor</option>
          <option value="Comprador">Comprador</option>
          <option value="Banco">Banco</option>
@@ -95,24 +96,22 @@ li a:hover {
 </form>
     <button class="btn" onclick="findUser()" style="width:120px;">Search</button>
 <p id="searchFound"></p>
-<hr style="border-color:black">
 
-<div id="proveedores">
+
+<div id="proveedores" style="margin-top:100px;">
     <h2>Proveedores</h2>
 <table id="suppliers-table"></table>
 </div>
 
-<hr style="border-color:black">
 
-<div id="compradores">
+<div id="compradores" style="margin-top:100px;">
     <h2>Compradores</h2>
 <table id="buyers-table"></table>
 </div>
 
 
-<hr style="border-color:black">
 
-<div id="bancos">
+<div id="bancos" style="margin-top:100px;">
     <h2>Bancos</h2>
 <table id="bancos-table"></table>
 </div>
