@@ -19,7 +19,6 @@
 }
  .main{
        margin: 50px auto;
-       padding-left:200px;
        max-width:1300px;
  }   
 
@@ -86,41 +85,49 @@ li a:hover {
   <h1>Clientes</h1>
 <p id="user"></p>
 <form>
-    <input id="search" placeholder="rfc"><br>
+    <input id="rfc" placeholder="RFC"><br>
     <select class="tipo" id="sel">
-        <option value="Proveedor">Proveedor</option>
-         <option value="Comprador">Comprador</option>
-         <option value="Banco">Banco</option>
+        <option value="proveedor">Proveedor</option>
+         <option value="comprador">Comprador</option>
+         <option value="banco">Banco</option>
     </select>
 </form>
-    <button class="btn" onclick="findUser()" style="width:120px;">Search</button>
-<p id="searchFound"></p>
-<hr style="border-color:black">
+    <button class="btn" onclick="buscarClientes()" style="width:120px;">Search</button>
 
-<div id="proveedores">
-    <h2>Proveedores</h2>
-<table id="suppliers-table"></table>
+<div id="form-proveedor" style="margin-top:100px; margin-bottom:100px; display:none;">
+<form>
+Nombre:<input id="f-p-nombre">
+RFC:<input id="f-p-rfc">
+Email:<input id="f-p-email">
+<br>
+Tasa Base:<input id="f-p-tasabase">
+Spread Points:<input id="f-p-spreadpoints">
+<button type="button" onclick="saveProveedor()">Save</button>
+</form>
 </div>
 
-<hr style="border-color:black">
-
-<div id="compradores">
-    <h2>Compradores</h2>
-<table id="buyers-table"></table>
+<div id="form-comprador" style="margin-top:100px; margin-bottom:100px; display:none;">
+<form>
+Nombre:<input id="f-c-nombre">
+RFC:<input id="f-c-rfc">
+<button type="button" onclick="saveComprador()">Save</button>
+</form>
 </div>
 
-
-<hr style="border-color:black">
-
-<div id="bancos">
-    <h2>Bancos</h2>
-<table id="bancos-table"></table>
+<div id="form-banco" style="margin-top:100px; margin-bottom:100px; display:none;">
+<form>
+Nombre:<input id="f-b-nombre">
+RFC:<input id="f-b-rfc">
+<button type="button" onclick="saveBanco()">Save</button>
+</form>
 </div>
 
+<table id="result-table"></table>
+<p id="error" style="display:none"> No existen resultados</p>
     </div>
   
 
 
-<script src="./js/clientes-admin.js"></script> 
+<script src="./js/admin-config.js"></script> 
 </body>
 </html>

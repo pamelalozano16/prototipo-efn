@@ -13,6 +13,7 @@ const facturaDescontada =require('./routers/facturaDescontada')
 const bancoRouter =require('./routers/bancos')
 const multer = require('multer')
 const excelToJson = require('convert-excel-to-json');
+const fetch = require('node-fetch');
 
 
 const app = express()
@@ -207,6 +208,9 @@ app.get('/clientes', (req, res) => {
 app.get('/p',  (req, res) => {
     res.render('proveedor-admin')
 })
+app.get('/admin-config',  (req, res) => {
+    res.render('admin-config')
+})
 app.get('/carga-facturas',  (req, res) => {
     res.render('carga-facturas')
 })
@@ -277,7 +281,19 @@ app.get('/consultar-facturas',  (req, res) => {
 })
 
 
-
+app.get('/todos', async (req, res)=>{
+    var todos=[]
+   const pJson = await fetch('https://prototipo-efn.herokuapp.com/prueba')
+   const suppliers = await pJson.json()
+    const cJson = await fetch('https://prototipo-efn.herokuapp.com/buyers')
+    const buyers = await cJson.json()
+    const bJson = await fetch('https://prototipo-efn.herokuapp.com/bancos')
+    const banks = await bJson.json()
+    todos= todos.concat(suppliers)
+    todos=todos.concat(buyers)
+    todos=todos.concat(banks)
+    res.send(todos)
+})
 
 app.listen(port, () => {
     console.log('Server is up on port '+port)

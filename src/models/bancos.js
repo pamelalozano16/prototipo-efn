@@ -6,6 +6,9 @@ const bancoSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    rfc:{
+        type:String
     }
 })
 

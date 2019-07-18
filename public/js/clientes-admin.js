@@ -25,12 +25,12 @@ fetch('/buyers').then((response)=>{
 
                var table = $('#buyers-table');
                var row, cell;
-               var titles = $('<th></th><th></th><th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th><th>% Aforo</th>');
+               var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th><th>% Aforo</th>');
                table.append(titles)
             for(var i=0; i<bnames.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            cell = $('<td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
             row.append( cell );
            }
 
@@ -66,12 +66,12 @@ fetch('/prueba').then((response)=>{
  
                 var table = $('#suppliers-table');
                 var row, cell;
-                var titles = $('<th></th><th></th><th>Names</th><th>RFC</th><th>Email</th><th>Tasa Base</th><th>Spread Points</th>');
+                var titles = $('<th>Names</th><th>RFC</th><th>Email</th><th>Tasa Base</th><th>Spread Points</th>');
                 table.append(titles)
              for(var i=0; i<names.length; i++){
              row = $('<tr />' );
              table.append( row );
-             cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+names[i]+'</td><td>'+rfcs[i]+'</td><td>'+emails[i]+'</td><td>'+tasabases[i]+'</td><td>'+spreadp[i]+'</td>')
+             cell = $('<td class="idnums">'+names[i]+'</td><td>'+rfcs[i]+'</td><td>'+emails[i]+'</td><td>'+tasabases[i]+'</td><td>'+spreadp[i]+'</td>')
              row.append( cell );
             }
  
@@ -86,12 +86,12 @@ fetch('/prueba').then((response)=>{
          if(data.error){return console.log(data.error)}
          var table = $('#bancos-table');
          var row, cell;
-         var titles=$('<th></th><th></th><th>Nombre del Banco</th>')
+         var titles=$('<th>Nombre del Banco</th><th>RFC</th>')
          table.append(titles)
          for(var i in data){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Editar</button></td><td class="idnums">'+data[i].name+'</td>')
+            cell = $('<td class="idnums">'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td>')
             row.append( cell );
          }
      })

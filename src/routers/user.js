@@ -75,7 +75,18 @@ router.post('/prueba', async (req,res)=>{
         
 
 })
+router.get('/searchP/:rfc', async (req, res)=>{
+    myRfc=req.params.rfc
 
+    try{
+        const user = await User.find({"rfc":myRfc})
+        if(!user){throw new Error ('not found')}
 
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send(e.message)
+    }
+})
 
 module.exports =router
