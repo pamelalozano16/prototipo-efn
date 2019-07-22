@@ -57,7 +57,8 @@ function add(){
             'accept-encoding': 'gzip, deflate'
            },
            body: JSON.stringify({
-            name
+            name,
+            rfc
            }),
            json: true
        }).catch((e)=>{
