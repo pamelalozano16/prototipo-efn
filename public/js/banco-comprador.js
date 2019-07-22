@@ -108,9 +108,9 @@ fetch('/buyers').then((response)=>{
                    bages = bages.concat(data[i].age)
                    bIDnums[i]=(data[i].IDnum)
                    bids = bids.concat(data[i]._id)
-                   lineaDC=lineaDC.concat(data[i].lineaDeCredito)
-                   diasDG=diasDG.concat(data[i].bufferDays)
-                   aforoP=aforoP.concat(data[i].aforoP)
+                   lineaDC=lineaDC.concat(data[i].lineaDeCredito  ||"Pendiente")
+                   diasDG=diasDG.concat(data[i].bufferDays  ||"Pendiente")
+                   aforoP=aforoP.concat(data[i].aforoP  ||"Pendiente")
                } 
 
                var table = $('#compradores');
@@ -131,7 +131,9 @@ fetch('/buyers').then((response)=>{
 })
 
 async function compradoresPendientes(){
-
+    var lineaDC=[]
+    var diasDG=[]
+    var aforoP=[]
     const buyersJSON = await fetch('/buyers')
     const buyers = await buyersJSON.json()
     console.log(buyers)
@@ -140,11 +142,16 @@ async function compradoresPendientes(){
     var titles = $('<th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito (MXN)</th><th>% Aforo</th>');
     table.append(titles)
     for (var i in buyers){
+
+        lineaDC=lineaDC.concat(buyers[i].lineaDeCredito  ||"Pendiente")
+        diasDG=diasDG.concat(buyers[i].bufferDays  ||"Pendiente")
+        aforoP=aforoP.concat(buyers[i].aforoP  ||"Pendiente")
+    
         if(buyers[i].bufferDays== undefined||buyers[i].lineaDeCredito==undefined||buyers[i].aforoP==undefined){
           document.getElementById("resultado").style.display="none";
        row = $('<tr />' );
        table.append( row );
-       cell = $('<td class="idnums">'+buyers[i].IDnum+'</td><td>'+buyers[i].name+'</td><td>'+buyers[i].age+'</td><td style="background-color:firebrick">'+buyers[i].bufferDays+'</td><td style="background-color:firebrick">'+buyers[i].lineaDeCredito+'</td><td style="background-color:firebrick">'+buyers[i].aforoP+'</td>')
+       cell = $('<td class="idnums">'+buyers[i].IDnum+'</td><td>'+buyers[i].name+'</td><td>'+buyers[i].age+'</td><td style="background-color:firebrick">'+diasDG[i]+'</td><td style="background-color:firebrick">'+lineaDC[i]+'</td><td style="background-color:firebrick">'+aforoP[i]+'</td>')
        row.append( cell );
       }
         }

@@ -100,6 +100,12 @@ console.log(data)
 
 async function buscarPublicadas(){
 
+    var Parent = document.getElementById("tabla-busqueda");
+    while(Parent.hasChildNodes())
+    {
+       Parent.removeChild(Parent.firstChild);
+    }
+
     const myrfc=rfc()
         if(myrfc!=""){
             console.log(myrfc)

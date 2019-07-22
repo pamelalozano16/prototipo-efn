@@ -20,9 +20,9 @@ fetch('/buyers').then((response)=>{
                    ages = ages.concat(data[i].age)
                    IDnums[i]=(data[i].IDnum)
                    ids = ids.concat(data[i]._id)
-                   lineaDC=lineaDC.concat(data[i].lineaDeCredito)
-                   diasDG=diasDG.concat(data[i].bufferDays)
-                   aforoP=aforoP.concat(data[i].aforoP)
+                   lineaDC=lineaDC.concat(data[i].lineaDeCredito ||"Pendiente")
+                   diasDG=diasDG.concat(data[i].bufferDays ||"Pendiente")
+                   aforoP=aforoP.concat(data[i].aforoP ||"Pendiente")
                } 
 
                var table = $('#myTable');
