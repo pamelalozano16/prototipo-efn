@@ -140,10 +140,11 @@ function createData(){
                   const pMonth=(new Date (purchaseDate)).getMonth()+1
                   const matuDate= matDate(dueDay, dueMonth, dueYear, bufferDays)
                   const discountPeriod= discPeriod(matuDate[0], matuDate[1], pDay, pMonth)
-                  const libor=roundLibor((document.getElementById("libor").innerHTML)/100)
-                  const creditSpread=document.getElementById("spreadPoints").innerHTML
-                  const discountMargin=roundNum(advanceRate*(libor+creditSpread)*(discountPeriod/360))
-                  const efnFee=roundNum(advanceRate*(libor+creditSpread+6)*(discountPeriod/360))
+                  const libor=((document.getElementById("libor").innerHTML)/100)
+                  const creditSpread=(document.getElementById("spreadPoints").innerHTML/100)
+                  const discountPorc =roundLibor(libor+creditSpread)
+                  const discountMargin=roundNum(advanceRate*(discountPorc)*(discountPeriod/365))
+                  const efnFee=roundNum(advanceRate*(0.06)*(discountPeriod/365))
                   const purchasePrice=roundNum(advanceRate-discountMargin)
                 var maxDate = new Date()
                 maxDate.setHours(0,0,0,0);
