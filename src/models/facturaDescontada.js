@@ -70,6 +70,9 @@ const FacturaD = mongoose.model('facturasDescontadas', {
     },
     matuDate:{
         type:Date
+    },
+    porcentajeTotal:{
+        type: Number
     }
 })
 

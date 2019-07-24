@@ -73,6 +73,9 @@ efnFee:{
 },
 matuDate:{
     type:Date
+},
+porcentajeTotal:{
+    type: Number
 }
 })
 module.exports = Factura

@@ -150,7 +150,7 @@ function createData(){
                 maxDate.setDate(matuDate[0])
                 maxDate.setMonth(matuDate[1]-1)
                 maxDate.setFullYear(matuDate[2])
-                
+                const porcentajeTotal = roundNum((purchasePrice/aforoo)*100)
 
             fetch('/facturaTemp/'+_id, {
               method: "PATCH",
@@ -173,7 +173,8 @@ function createData(){
                   discountMargin,
                   purchasePrice,
                   name,
-                  efnFee
+                  efnFee,
+                  porcentajeTotal
               })
           }).catch(function(error) {
               console.log('Hubo un problema con la petición Fetch:' + error);
