@@ -80,22 +80,25 @@ li a:hover {
        <script>
            document.getElementById("cs").href="/banco"
            document.getElementById("inicio").href="/inicio-banco"
-           document.getElementById("op-1").innerHTML="Clientes"
+           document.getElementById("op-1").innerHTML="Configuración Proveedores"
            document.getElementById("op-1").href="/banco-clientes"
            document.getElementById("op-2").innerHTML="Sell Offers"
            document.getElementById("op-2").href="/banco-facturas"
-           document.getElementById("op-3").innerHTML="Documentos Comprados"
+           document.getElementById("op-3").innerHTML="Cobranza"
         document.getElementById("op-3").href="/banco-comprados"
        </script>
        <div class="main">
 
     <h1>Sell Offers</h1>
     <form style="margin-top:50px;">
+        <span style="float:left; margin-left:30px;">Nombre Proveedor:</span><div id="namesP-form" style="float:left;"></div>
 <span style="float:left; margin-left:30px;">Nombre Comprador:</span><div id="names-form" style="float:left;"></div>
 <input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
-<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
 
     </form>
+<div style=" padding-top: 50px; margin-top:100px;">
+    <span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+</div>
 <div style=" padding-top: 50px; margin-top:100px;">
     <button type="button" style="background-color:#0b7f43;float:left;margin-bottom:100px;" onclick="buscarDescontadas()">Buscar</button>
 </div>

@@ -31,7 +31,7 @@ fetch('/prueba').then((response)=>{
             for(var i=0; i<names.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td class="profile-td"><button class="profile" id="profile-'+(i)+'">Ver Perfil</button></td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            cell = $('<td class="profile-td"><button class="profile" id="profile-'+(i)+'">Detalle Proveedor</button></td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
             row.append( cell );
            }
 

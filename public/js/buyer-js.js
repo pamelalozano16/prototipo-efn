@@ -1,4 +1,6 @@
-
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
 
 document.getElementById("save").style.visibility='hidden';
 let IDnums=[]
@@ -27,12 +29,12 @@ fetch('/buyers').then((response)=>{
 
                var table = $('#myTable');
                var row, cell;
-               var titles = $('<th></th><th></th><th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito</th><th>% Aforo</th>');
+               var titles = $('<th></th><th></th><th>ID</th><th>Names</th><th>RFC</th><th>Días de Gracia</th><th>Línea de Credito MXN</th><th>% Aforo</th>');
                table.append(titles)
             for(var i=0; i<names.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Edit</button></td><td class="idnums">'+IDnums[i]+'</td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            cell = $('<td id="delete-td"><button onclick="deletebtn('+i+')" class="btn"><i class="fa fa-trash"></i></button></td><td id="delete-td"><button onclick="editbtn('+i+')" class="editbtn">Edit</button></td><td class="idnums">'+IDnums[i]+'</td><td>'+names[i]+'</td><td>'+ages[i]+'</td><td>'+diasDG[i]+'</td><td> $'+formatNumber(lineaDC[i])+'</td><td>'+aforoP[i]+'</td>')
             row.append( cell );
            }
 

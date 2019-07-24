@@ -1,4 +1,6 @@
-
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
 
 
   async function apiGet(){
@@ -120,7 +122,7 @@ fetch('/buyers').then((response)=>{
             for(var i=0; i<bnames.length; i++){
             row = $('<tr />' );
             table.append( row );
-            cell = $('<td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>'+lineaDC[i]+'</td><td>'+aforoP[i]+'</td>')
+            cell = $('<td class="idnums">'+bIDnums[i]+'</td><td>'+bnames[i]+'</td><td>'+bages[i]+'</td><td>'+diasDG[i]+'</td><td>$'+formatNumber(lineaDC[i])+'</td><td>'+aforoP[i]+'</td>')
             row.append( cell );
            }
 

@@ -115,7 +115,7 @@ async function apiGetProveedores(){
                     table.append(titles)
                     row = $('<tr />' );
                     table.append( row );
-                    cell=$('<td id="cb-todos"><input type="checkbox"  onclick="selTodos()" />Seleccionar Todos<br/></td>')
+                    cell=$('<td id="cb-todos"><input type="checkbox" id="cb-todos-input" onclick="selTodos()" />Seleccionar Todos<br/></td>')
                     row.append( cell );
                  for(var i=0; i<rfcs.length; i++){
                      if(data[i].status=="Publicada"){
@@ -137,10 +137,22 @@ async function apiGetProveedores(){
 
 
 function selTodos(){
-    checkboxes = document.getElementsByName('cboxes');
-    for(var i=0, n=checkboxes.length;i<n;i++) {
-        checkboxes[i].checked = true;
-      }
+    if(document.getElementById("cb-todos-input").checked){
+        checkboxes = document.getElementsByName('cboxes');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = true;
+          }
+    }
+    if(!document.getElementById("cb-todos-input").checked){
+        checkboxes = document.getElementsByName('cboxes');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = false;
+          }
+        fetch('/facturaTemp', {
+            method: 'DELETE'
+        })      
+    }
+    
       descontar()
 }
 
