@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+header{
+    background-color: #183c56;
+    z-index:1;
+        height: 50px;
+}
+ .main{
+       margin: 50px auto;
+       padding-left:200px;
+       max-width:1600px;
+ }   
+
+body{
+            max-width:none;
+            margin:0;
+      }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+   border-bottom: solid 1px #b5b3b3;
+    padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar{
+      float:left;
+      height:200%;
+      width: 200px;
+      position:absolute;
+      background-color:#292c35;
+      z-index:0;
+     color: white;
+    padding-top: 90px;
+
+}
+    td{
+        width:auto;
+        padding: 10px 10px;
+        font-size:14px;
+    }
+    .cboxes{
+        display:none;
+    }
+    .cboxes-title{
+        display:none;
+    }
+</style>
+    {{!-- <script src="./js/libor.js"></script> --}}
+</head>
+<body id="body">
+        {{>header}}
+
+       {{>sidebarproveedor}}
+<div class="main" id="main">
+<h1>Consultar Facturas</h1>
+
+<div style="margin-top:30px">
+Spread Points: <p id="spreadPoints" style="display:inline;"></p><br>
+Libor: <p id="libor" style="display:inline;">2.35</p>% USD
+</div>
+<div style="margin-top:50px;">
+    <h3>Buscar:</h3>
+    <div style="width:1000px;">
+<form>
+  <span style="float:left; margin-left:30px;">Nombre Proveedor:</span><div id="namesP-form" style="float:left;"></div>
+<span style="float:left; margin-left:30px;">Nombre Comprador:</span><div id="names-form" style="float:left;"></div>
+<input placeholder="RFC" id="rfc" style="float:left; margin-left:30px;">
+<span style="float:left; margin-left:30px;">Fecha de Vencimiento:</span><input type="date" style="float:left; margin-left:10px; " id="fechaVen">
+<span style="float:left; margin-left:30px;">Status:</span><select id="search-status" class="tipo" style="float:left; margin-left:30px;" >
+    <option></option>
+    <option value="Publicada">Publicada</option>
+    <option value="En Proceso">En Proceso</option>
+    <option value="Vendida">Vendida</option>
+</select>
+<span style="float:left; margin-left:30px;">Moneda:</span><select id="search-moneda" class="tipo" style="float:left; margin-left:30px;" >
+    <option></option>
+    <option value="mxn">MXN</option>
+    <option value="usd">USD</option>
+</select>
+</form>
+    </div>
+
+</div>
+<div style="margin-bottom:50px; padding-top: 50px;">
+    <button style="background-color:#0b7f43;margin-right: 50px;float:right;" onclick="buscar()">Buscar</button>
+</div>
+
+
+ 
+<div style="margin-top:150px;">
+
+    <table id="tabla-facturas"></table>
+    <table id="tabla-busqueda"></table>
+    <p id="res2" style="display:none; padding-top:100px; ">No hay resultados de su busqueda. Favor de refrescar la página.</p>
+    <p id="resumen" style="font-weight: 600;font-size: 17px;">Documentos encontrados: <span id="resumenNum"></span></p>
+   <p id="resumenV" style="font-weight: 600;font-size: 17px;">Valor de Documentos: $<span id="resumenValor"></span></p>
+  
+    <button id="download-btn" style="background-color:#0b7f43" onclick="window.location.href='facturas.csv'">Download CSV</button>
+    <button id="busqueda-btn" style="background-color:#0b7f43" onclick="window.location.href='busqueda.csv'">Download CSV</button>
+</div>
+
+
+</div>
+        <script>
+
+            window.onload = function() {
+                
+            fetch('/facturaTemp', {
+        method: "DELETE"
+    })}
+
+        </script>
+
+
+    <script src="./js/temp.js"></script> 
+    <script src="./js/consultar-facturas.js"></script> 
+    {{!-- <script>
+        verTabla()
+    </script> --}}
+    <script src="./js/buscar.js"></script> 
+
+
+</body>
+</html>

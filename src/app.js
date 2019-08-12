@@ -263,6 +263,9 @@ app.get('/banco',  (req, res) => {
 app.get('/admin',  (req, res) => {
     res.render('logins/login-admin')
 })
+app.get('/consultar-facturas-admin',  (req, res) => {
+    res.render('consultar-facturas-admin')
+})
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',
