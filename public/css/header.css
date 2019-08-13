@@ -1,0 +1,64 @@
+.notification {
+    color: white;
+    text-decoration: none;
+    padding: 5px 20px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    position: fixed;
+    right: 12%;
+    top: 11.858px;
+  }
+  
+  .notification:hover {
+    color:#183C56;
+    background-color: white;
+  }
+  
+  .notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 0px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
+
+  .popup{
+    position: absolute;
+    right: 55px;
+    top: 50px;
+    padding: 20px 0;
+    background-color: #e8e8e8;
+    color: #183C56;
+    text-align: center;
+    width: 300px;
+    display:none;
+    border-radius: 10px;
+  }
+ 
+ .notifs-table{
+   text-align: left;
+  padding: 0 10px;
+ }
+ .notifs-table tr{
+  height: 80px;
+ }
+.notifs-table td{
+  padding: 4 0;
+  float:left;
+  border:none;
+  width:auto;
+    }
+.n-input{
+  float: right;
+    }
+.n-title{
+ font-weight: 600;
+ font-size: 14px;
+    }
+.n-desc{
+    font-size:13px;
+    }
+  

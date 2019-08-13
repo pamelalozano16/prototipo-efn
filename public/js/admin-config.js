@@ -129,6 +129,7 @@ async function editbtn(num){
        document.getElementById("f-c-nombre").value=user[0].name
        document.getElementById("rfc").value=user[0].age
        document.getElementById("f-c-rfc").value=user[0].age
+       document.getElementById("cobranza").value=user[0].cobranza
     };
     if(tipo=="banco"){
         document.getElementById("form-banco").style.display="block"
@@ -166,6 +167,7 @@ async function saveProveedor(){
 
 async function saveComprador(){
     const rfc = document.getElementById("rfc").value
+    const cobranza = document.getElementById("cobranza").value
     const dataJson = await fetch('/search/'+rfc)
     const data = await dataJson.json()
     console.log(data)
@@ -179,6 +181,7 @@ async function saveComprador(){
         body: JSON.stringify({
             "name":document.getElementById("f-c-nombre").value,
             "age":document.getElementById("f-c-rfc").value,
+            "cobranza": cobranza
         })
     })
     window.location.reload(true)

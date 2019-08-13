@@ -251,6 +251,26 @@ async function apiGet(){
         method: "DELETE"
       }) 
      
+      const buyerJson = await fetch('/search/'+factura[0].rfc)
+      const buyer = await buyerJson.json()
+      console.log(factura[0].rfc, buyer, buyer[0].cobranza)
+      if(buyer[0].cobranza=="directa"){
+        await fetch('/notifs', {
+          method: 'POST',
+          headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'accept-encoding': 'gzip, deflate'},
+          body:JSON.stringify({
+            title: "La factura #"+factura[0].numero+" fue confirmada",
+            description: "Comprador: "+factura[0].name,
+            date:curday('/',0),
+            status: "Pendiente"
+          })
+        })
+        
+      }
+
     }
     
     }

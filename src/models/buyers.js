@@ -30,6 +30,10 @@ const buyerSchema = new mongoose.Schema({
     },
     aforoP:{
         type:Number
+    },
+    cobranza:{
+        type: String,
+        default: "delegada"
     }
 })
 
