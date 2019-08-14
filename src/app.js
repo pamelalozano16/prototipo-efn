@@ -253,6 +253,12 @@ app.get('/cobranza',  (req, res) => {
 app.get('/proveedor',  (req, res) => {
     res.render('logins/login-proveedor')
 })
+app.get('/comprador',  (req, res) => {
+    res.render('logins/login-comprador')
+})
+app.get('/inicio-comprador',  (req, res) => {
+    res.render('dashboards/dashboard-comprador')
+})
 app.get('/inicio-proveedor',  (req, res) => {
     res.render('dashboards/dashboard-proveedor')
 })

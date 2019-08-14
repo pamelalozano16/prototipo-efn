@@ -19,6 +19,22 @@ router.get('/notifs/pend', async(req, res)=>{
         res.send(e)
     }
 })
+router.get('/notifs/pend/np', async(req, res)=>{
+    try{
+        const notifs = await Notifs.find({"status":"Pendiente", $or: [ { "type": "N" }, { "type" : "Np" } ]})
+        res.send(notifs)
+    } catch(e){
+        res.send(e)
+    }
+})
+router.get('/notifs/pend/nc', async(req, res)=>{
+    try{
+        const notifs = await Notifs.find({"status":"Pendiente", $or: [ { "type": "N" }, { "type" : "Nc" } ]})
+        res.send(notifs)
+    } catch(e){
+        res.send(e)
+    }
+})
 
 router.post('/notifs', async (req, res)=>{
     const body = new Notifs(req.body)

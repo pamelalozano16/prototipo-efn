@@ -7,7 +7,7 @@ function borrarTabla(){
 }
 
 async function getNotifs(){
-    const notifsJson = await fetch('/notifs/pend/np')
+    const notifsJson = await fetch('/notifs/pend/nc')
     const notifs = await notifsJson.json()
     console.log(notifs)
     if(notifs.length>0){
@@ -31,7 +31,7 @@ getNotifs()
 
     if(document.getElementById("popup").style.display=="block"){
         document.getElementById("popup").style.display="none"
-        const notifsjson = await fetch('/notifs/pend/np')
+        const notifsjson = await fetch('/notifs/pend/nc')
         const notifics = await notifsjson.json()
         console.log(notifics.length)
         for(var i in notifics){
@@ -60,7 +60,7 @@ getNotifs()
 }
 
 async function notifBadge(){
-const datjson = await fetch('/notifs/pend/np')
+const datjson = await fetch('/notifs/pend/nc')
 const data = await datjson.json()
 
 if(data.length>0){ 

@@ -34,6 +34,10 @@ const buyerSchema = new mongoose.Schema({
     cobranza:{
         type: String,
         default: "delegada"
+    },
+    confirming:{
+        type: Boolean,
+        default: false
     }
 })
 

@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="css/header.css">
+<header style="background-color: #183c56;">
+
+<div style="width:1117px; margin:0 auto;">
+<ul>
+  <li><img src="./img/logo-blanco.png" style="padding-right: 80px; width:280px;"></li>
+</ul>
+
+  <a href="#" class="notification" id="notifs" onclick="notifs()">
+  <span>Notificaciones</span>
+  <span class="badge" id="badge"></span>
+</a>
+
+<ul style="position: absolute;
+    left: 90%;
+    top: 0px; width:auto;">
+<li class="dropdown">
+ <a href="javascript:void(0)" class="dropbtn" style="border:none;"><img src="./img/user-2.png" style="width:35px;"></a>
+    <div class="dropdown-content">
+      <a href="#">Mi Perfil</a>
+      <a href="/proveedor" id="cs">Cerrar Sesion</a>
+    </div>
+</li>
+</ul>
+
+
+
+</div>
+</div>
+
+
+</header>
+<div class="popup" id="popup">
+<table class="notifs-table" id="notifs-table">
+{{!-- <td><input type="checkbox" class="n-input"><span class="n-title">La factura #E9534833 fue confirmada</span></td><td><span class="n-desc">Comprador: Suzuki</span></td>
+</tr><td><input type="checkbox" class="n-input"><span class="n-title">La factura #HW2917 fue confirmada</span></td><td><span class="n-desc">Comprador: HUAWEI</span></td> --}}
+
+<p id="emptyNotifs">No hay notificaciones</p>
+</table>
+
+</div>
+<script src="js/headerNc.js"></script>

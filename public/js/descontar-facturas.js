@@ -162,7 +162,42 @@ fetch('/facturaTemp').then((response)=>{
 
  })
 
-
+async function checkIfNotif(response){
+const data = await response.json()
+console.log(data, data.rfc)
+const buyerjson = await fetch('/search/'+data[0].rfc)
+const buyer = await buyerjson.json()
+console.log(buyer)
+console.log(buyer[0].confirming)
+if(buyer[0].confirming==true){
+  //STATUS DE FACUTRA: CONFIRMING
+  fetch('/facturas/'+data[0]._id, {
+    method: 'PATCH',
+    headers:{'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'accept-encoding': 'gzip, deflate'},
+    body:JSON.stringify({
+      "status":"Confirming"
+    })
+  })
+  //POST NOTIFICIATION
+  await fetch('/notifs', {
+    method: 'POST',
+    headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'accept-encoding': 'gzip, deflate'},
+    body:JSON.stringify({
+      title: "IACNA descontó la factura #"+data[0].numero,
+      description: "Banco: Hitachi",
+      date:curday('/',0),
+      status: "Pendiente",
+      type: "Nc"
+    })
+  })
+  //END CONFIRMING
+}
+}
 
  function confirmarDescuento(){
 apiGet().then((result)=>{
@@ -177,6 +212,7 @@ apiGet().then((result)=>{
       body:JSON.stringify(result[i]),
       json:true
     })
+
     fetch('/searchF/'+result[i].numero).then((factura)=>{
       factura.json().then((facturaR)=>{
         const id = facturaR[0]._id
@@ -194,6 +230,9 @@ apiGet().then((result)=>{
           })
       })
 
+      })
+      fetch('/searchF/'+result[i].numero).then((factura)=>{
+        checkIfNotif(factura)
       })
                     }
 

@@ -12,6 +12,10 @@ const NotfsSchema = new mongoose.Schema({
     },
     status:{
         type: String
+    },
+    type:{
+        type: String,
+        default:"N"
     }
 })
 

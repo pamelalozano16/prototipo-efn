@@ -100,9 +100,13 @@ Spread Points:<input id="f-p-spreadpoints">
 <form>
 Nombre:<input id="f-c-nombre"  style="margin: 0 15px;">
 RFC:<input id="f-c-rfc"  style="margin: 0 15px;">
-Cobranza: <select name="cobranza" id="cobranza">
+Cobranza: <select name="cobranza" id="cobranza" style="margin: 0 15px;">
     <option value="delegada">Delegada</option>
     <option value="directa">Directa</option>
+</select>
+Confirming: <select name="confirming" id="confirming">
+    <option value="false">No</option>
+    <option value="true">Si</option>
 </select>
 <button type="button" onclick="saveComprador()"  style="margin: 0 15px;">Save</button>
 </form>
