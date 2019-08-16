@@ -22,6 +22,9 @@ const FacturaD = mongoose.model('facturasDescontadas', {
     invoiceDate:{
         type: Date
     },
+    status:{
+        type:String
+    },
     dueDate:{
         type:Date
     },

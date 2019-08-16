@@ -166,12 +166,24 @@ async function checkIfNotif(response){
 const data = await response.json()
 console.log(data, data.rfc)
 const buyerjson = await fetch('/search/'+data[0].rfc)
+const descontadajson = await fetch('/searchFd/'+data[0].numero)
+const descontada = await descontadajson.json()
+console.log("Descontada: ", descontada)
 const buyer = await buyerjson.json()
 console.log(buyer)
 console.log(buyer[0].confirming)
 if(buyer[0].confirming==true){
   //STATUS DE FACUTRA: CONFIRMING
   fetch('/facturas/'+data[0]._id, {
+    method: 'PATCH',
+    headers:{'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'accept-encoding': 'gzip, deflate'},
+    body:JSON.stringify({
+      "status":"Confirming"
+    })
+  })
+  fetch('/facturasDescontadas/'+descontada[0]._id, {
     method: 'PATCH',
     headers:{'Accept': 'application/json',
     'Content-Type': 'application/json',

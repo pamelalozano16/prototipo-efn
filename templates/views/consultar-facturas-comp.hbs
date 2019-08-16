@@ -1,0 +1,41 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/register.css">
+<link rel="stylesheet" href="css/consultar-facturas-comp.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+    <body>
+{{>headerNc}}
+       {{>sidebarComprador}}
+
+<div class="main">
+  <h1>
+    Consultar Facturas
+  </h1>
+  <div id="search-div" style="margin-bottom:150px;">
+      <form style="margin:50px 0;">
+<span style="float:left; margin-left:30px;">Nombre Proveedor:</span><div id="namesP-form" style="float:left;"></div>
+        <span style="margin-left:40px">Fecha de Operación</span><input type="date" id="fecha-operación">
+
+      </form>
+            <button style="float:left;">Buscar</button>
+  </div>
+       <div style="width: 90em;overflow-x: auto; white-space: nowrap;">
+<table id="confirming-table"></table>
+       </div>
+
+<button style="margin:30px 0;background-color: #0b7f43;" onclick="confirming()">Confirmar</button>
+      
+      <h2 style=" margin-top:200px;">Facturas Vendidas</h2>
+       <div style="width: 90em;overflow-x: auto; white-space: nowrap; margin-top:50px;">
+<table id="vendidas-table"></table>
+       </div>
+
+</div>
+<script src="js/comp-consultar.js"></script>
+    </body>
+</html>

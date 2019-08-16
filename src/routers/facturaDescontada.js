@@ -4,7 +4,7 @@ const router = new express.Router()
 
 router.get('/facturasDescontadas', async (req, res)=>{
     try{
-        const facturas = await FacturaD.find({})
+        const facturas = await FacturaD.find({"status":"En proceso"})
         res.send(facturas)
     }
     catch(e){
@@ -73,6 +73,15 @@ router.get('/searchFd/:numero', async (req, res)=>{
     }
     catch(e){
         res.status(500).send(e.message)
+    }
+})
+
+router.get('/searchGMd', async(req, res)=>{
+    try{
+        const user = await FacturaD.find({"rfc": "XEXX010101000"})
+        res.send(user)
+    } catch(e){
+        res.send(e)
     }
 })
 

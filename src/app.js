@@ -274,6 +274,9 @@ app.get('/admin',  (req, res) => {
 app.get('/consultar-facturas-admin',  (req, res) => {
     res.render('consultar-facturas-admin')
 })
+app.get('/consultar-facturas-comp',  (req, res) => {
+    res.render('consultar-facturas-comp')
+})
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',

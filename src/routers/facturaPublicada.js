@@ -87,6 +87,19 @@ router.get('/searchbyRFC/:rfc/:dueDate?/:moneda?/:status?', async (req, res, nex
         res.status(500).send(e.message)
     }
 })
- 
+router.get('/searchGM', async (req, res)=>{
+    invoiceNumber=req.params.numero
+
+    try{
+        const user = await Factura.find({"rfc":"XEXX010101000"})
+        if(!user){throw new Error ('not found')}
+
+        res.send(user)
+    }
+    catch(e){
+        res.status(500).send(e.message)
+    }
+})
+
 
 module.exports =router
