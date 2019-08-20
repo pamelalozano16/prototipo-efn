@@ -61,7 +61,7 @@ async function verConfirming(){
     const data = await datajson.json()
     const table = $("#confirming-table");
     var row, cell;
-    var titles = $('<th></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Monto neto aforado</th><th>Dias de Gracia</th><th>Descuento</th><th>Plazo</th><th>Fecha final de vencimiento</th><th>IVA</th><th>Libor</th><th>Fecha de operación</th><th>Monto a recibir</th><th>Porcentaje total</th><th>Status</th>');
+    var titles = $('<th></th><th>Nombre del Comprador</th><th>RFC</th><th>Numero de Factura</th><th>Folio Fiscal</th><th>Fecha de Factura</th><th>Fecha de Vencimiento</th><th>Moneda</th><th> Valor de la Factura</th><th>Status</th>');
     table.append(titles)
       console.log(data)
     for(var i in data){
@@ -71,8 +71,7 @@ async function verConfirming(){
             table.append( row );
             cell = $('<td class="checkbox-td"><form><input type="checkbox" id="cb-'+i+'" value="'+data[i].numero+'"></form></td><td>'+data[i].name+'</td><td class="idnums">'+data[i].rfc+'</td><td>'+data[i].numero+'</td><td>'+data[i].folioFiscal+
             '</td><td>'+formatDate(data[i].invoiceDate)+'</td><td>'+formatDate(data[i].dueDate)+'</td><td>'+data[i].moneda+'</td><td>'+formatNumber(data[i].aforo)+'</td>'+
-            '<td style="background-color:lightgreen">'+formatNumber(data[i].advanceRate)+'</td><td style="background-color:lightgreen">'+data[i].bufferDays+'</td><td style="background-color:lightgreen">$'+formatNumber(data[i].discountMargin)+'</td><td style="background-color:lightgreen">'+data[i].discountPeriod+'</td><td style="background-color:lightgreen">'+formatDate(data[i].matuDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].iva)+'</td>'+
-            '<td style="background-color:lightgreen">'+data[i].libor+'</td><td style="background-color:lightgreen">'+formatDate(data[i].purchaseDate)+'</td><td style="background-color:lightgreen">'+formatNumber(data[i].purchasePrice)+'</td><td style="background-color:lightgreen">'+data[i].porcentajeTotal+'%</td><td>'+data[i].status+'</td>')
+            '<td>'+data[i].status+'</td>')
             row.append( cell );
         }
     }
