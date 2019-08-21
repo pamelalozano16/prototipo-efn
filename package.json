@@ -20,6 +20,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.5.13",
     "multer": "^1.4.1",
+    "no-cors-proxy": "^1.0.4",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "validator": "^11.0.0",
