@@ -278,6 +278,9 @@ app.get('/consultar-facturas-admin',  (req, res) => {
 app.get('/consultar-facturas-comp',  (req, res) => {
     res.render('consultar-facturas-comp')
 })
+app.get('/graphs', (req, res)=>{
+    res.render('web-focus/graphs')
+})
 app.get('/consultar-facturas',  (req, res) => {
    deleteFile()
    var options = { method: 'DELETE',

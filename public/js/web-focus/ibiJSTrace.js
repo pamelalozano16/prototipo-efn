@@ -1,0 +1,6 @@
+// Copyright 1996-2019 Information Builders, Inc. All rights reserved.
+function IbiJSTrace(){}IbiJSTrace.onErrorChain=null;IbiJSTrace.traceit=function traceit(traceLevel,traceArea,traceLine){if(!window.ibiLog)return;IbiJSTrace.traceitIbiLog(window.ibiLog,traceLevel,traceArea,traceLine)};
+IbiJSTrace.traceitIbiLog=function traceit(ibiLog,traceLevel,traceArea,traceLine){if(!ibiLog||!ibiLog.url||!ibiLog.urlId||!ibiLog.monId)return;var postParms="IBIMON_area="+encodeURIComponent(traceArea)+"&IBIMON_level="+encodeURIComponent(traceLevel)+"&IBIMON_monId="+encodeURIComponent(ibiLog.monId)+"&IBIMON_urlId="+encodeURIComponent(ibiLog.urlId)+"&IBIMON_trace="+encodeURIComponent(traceLine.replace(/[\r\n]/gm,"--cc--"))+"&"+ibiLog.csrfTokenName+"="+encodeURIComponent(ibiLog.csrfTokenValue);var xhr=
+new XMLHttpRequest;xhr.open("POST",ibiLog.url,true);xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");xhr.send(postParms)};if(window.onerror)IbiJSTrace.onErrorChain=window.onerror;
+window.onerror=function(msg,url,lineNo,columnNo,error){if(window.ibiLog.errorCount){++window.ibiLog.errorCount;if(window.ibiLog.errorCount<100)IbiJSTrace.traceit("ERROR","js_error",error.message+"\n"+error.stack)}if(IbiJSTrace.onErrorChain)return IbiJSTrace.onErrorChain(msg,url,lineNo,columnNo,error);return false};
+
