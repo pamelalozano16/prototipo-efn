@@ -23,7 +23,7 @@
     "no-cors-proxy": "^1.0.4",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
-    "validator": "^11.0.0",
+    "validator": "^13.7.0",
     "x-frame-bypass": "^1.0.2"
   },
   "devDependencies": {
